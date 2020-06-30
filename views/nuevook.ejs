@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/main">Regresar</a><hr/>
+    <% if (losUsuarios) { %>
+        <a href="/main/<%= losUsuarios[1].usuario %>">Ver</a>
+        <i>Usuarios : <%= losUsuarios[1].usuario %></i><br/>
+      <% } %>
+  </body>
+</html>
