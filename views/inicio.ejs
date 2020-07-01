@@ -8,11 +8,12 @@
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
     <div class="card">
-  <div class="jumbotron mt-1">
-    <% if (rta) { %>
-        <i>Usuarios : <%= rta %></i>
-      <% } %>
-</div></div>
+      <div class="jumbotron mt-1">
+      Bienvenido
+      <% if (user) { %>
+          <i> <%= user.usuario %></i>
+        <% } %>
+      </div></div>
 
   </body>
 </html>
