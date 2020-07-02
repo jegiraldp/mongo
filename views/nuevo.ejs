@@ -8,18 +8,26 @@
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
 
-    <div class="card">  <% if (rta) { %>
+    <div class="card"><div class="jumbotron mt-0">
+      <% if (user) { %>
+
+    
+
+       <% if (rta) { %>
           <i> <%= rta %></i>
         <% } %>
-      <div class="jumbotron mt-1">
+
 
       <form action="/main/nuevo" method="POST">
         <input type="text"  name="usuario" autofocus placeholder="Usuario">
         <input type="password"  name="clave" value="" placeholder="Clave">
         <input type="submit" name="boton" value="Nuevo usuario">
       </form>
-      </div>
-    </div>
 
+
+    <%}else{%>
+      Usuario no autorizado
+      <%}%>
+</div></div>
   </body>
 </html>

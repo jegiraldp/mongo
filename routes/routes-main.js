@@ -11,7 +11,7 @@ router.get('/',(req,res)=> {
   //res.end();
 });
 
-router.get('/nuevo',(req,res)=> {
+router.get('/nuevo',isAuthenticated,(req,res)=> {
   //const nn =req.session.mivariable;
   //delete req.session.mivariable;
   res.render('nuevo',{rta:null});
@@ -19,21 +19,21 @@ router.get('/nuevo',(req,res)=> {
 
 router.get('/logout',(req,res)=> {
   req.logout();
-  //res.redirect('/main/login');
-  res.render('index',{rta:'No logueado....'});
+  res.redirect('/main');
+  //res.render('index',{rta:'No logueado....'});
 });
 
 router.get('/inicio',(req,res)=> {
   res.render('inicio');
 });
 
-router.get('/nuevook',isAuthenticated,async (req,res)=> {
+router.get('/nuevook',async (req,res)=> {
   const rta=await usuarios.find();
   res.render('nuevook',{rta});
 });
 
 
-router.post('/nuevo',async (req,res)=> {
+router.post('/nuevo',isAuthenticated,async (req,res)=> {
   const {usuario,clave}=req.body;
   console.log('buscar '+usuario);
   const el_usuario=await usuarios.findOne({usuario:usuario});
