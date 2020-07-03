@@ -7,15 +7,18 @@
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
-    <div class="card">
-  <div class="jumbotron">
+    <div>
+  <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
 
                     <% if (user) { %>
-                        <div> <b>Usuario:</b> <%= user.usuario %></div>
-  <% } %>
-                        <% if (rta) { %>
-                            <i>Usuarios : <%= rta %></i>
-                          <% } %>
+                        <div> <b>Usuario:</b> <%= user.usuario %></div><hr/>
+                  <% } %>
+                        <% if (rta) {%>
+
+                        <%  rta.forEach(function(rta){%>
+                          <%= rta.usuario %><br/>
+
+                          <% }); }%>
 
 
 </div></div>
