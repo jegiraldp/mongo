@@ -1,3 +1,18 @@
 div.jumbotron{
 background-color: white;
 }
+
+div#pie{
+
+  width:99%;
+  height: 45px;
+  padding-top: 2px;
+  padding-bottom: 1px;
+  text-align: center;
+  font-size: 1.0rem;
+  letter-spacing: -1px;
+  border: 0px solid #ccc;
+  border-radius: 4px;
+  color:#3B2F63;
+  display: inline-block;
+}

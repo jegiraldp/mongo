@@ -8,13 +8,13 @@ passport.use(new localStrategy({
   const user=await usuarios.findOne({usuario:email});
 
   if(!user) {
-    return done(null,false,{message:'Usuario no encontrado'});
+    return done(null,false,{message:'Usuario no autorizado'});
   }else{
     //console.log(user);
     const match= await user.matchPassword(password);
     if(match){
-      
-      return done(null, user,{message:'Bienvenido'});
+
+      return done(null, user);
     }
     else{
       return done(null, false, {message:'Clave incorrecta'});

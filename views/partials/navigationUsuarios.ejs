@@ -1,7 +1,7 @@
 
-<link rel="stylesheet" type="text/css" href="/css/menu.css" />
+
   <% if (user) { %>
-    <div id="navUsuarios">
+    <div id="navGeneral">
     <ul class="nav">
 
       <li class="nav-item active">
@@ -10,20 +10,20 @@
           Gestión Cursos<span class="sr-only">(current)</span></a>
       </li>
       <li>
-        <a class="nav-link" href="#">|</a>
+      <a class="nav-link">|</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/main/usuariosMain"><img src="/img/users.png">Gestión Usuarios</a>
       </li><li >
-        <a class="nav-link" href="#">|</a>
+        <a class="nav-link">|</a>
       </li>
-        
+
         <li>
           <a class="nav-link" href="#">
             <img src="/img/user.png">&nbsp;<%= user.usuario %></a>
         </li>
         <li>
-          <a class="nav-link" href="#">|</a>
+          <a class="nav-link">|</a>
         </li>
 
         <li class="nav-item">

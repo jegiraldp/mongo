@@ -4,24 +4,47 @@
     <meta charset="utf-8">
     <title></title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/nuevoCurso.css" />
+<link rel="stylesheet" type="text/css" href="/css/index.css" />
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
 <div><%- include ('partials/navigationUsuarios.ejs') %></div>
 <div><%- include ('partials/navigationGestionCursos.ejs') %></div>
     <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
-
-       <% if (user) { %>
-          <i> <%= rta %></i>
-      <form action="/main/nuevo" method="POST">
-        <input type="text"  name="usuario" autofocus placeholder="Usuario">
-        <input type="password"  name="clave" value="" placeholder="Clave">
-        <input type="submit" name="boton" value="Nuevo usuario">
-      </form>
-
-    <%}else{%>
-      Usuario no autorizado
+      <% if(error_registro) {%></i>
+      <div class="alerta">
+        <%= error_registro %>
+      </div>
       <%}%>
-</div></div>
+      <% if(ok_registro) {%></i>
+      <div class="alertaVerde">
+        <%= ok_registro %>
+      </div>
+      <%}%>
+
+      <div class="alertaVerde">
+      </div>
+       <% if (user) { %>
+          <br/>  <form action="/main/nuevoCurso" method="POST">
+      <div class="form-group">
+        <input type="text"  class="form-control" name="nombre"
+        autofocus placeholder="Nombre del curso" aria-describedby="emailHelp" />
+        <small id="emailHelp" class="form-text text-muted">Nombre del curso</small>
+      </div>
+      <div class="form-group">
+        <textarea rows="5" cols="55"  class="form-control" name="descripcion"
+        autofocus placeholder="Descripción breve"></textarea>
+        <small id="emailHelp" class="form-text text-muted">Descripción breve</small>
+      </div>
+        <input class="btn btn-primary" type="submit" name="boton" value="Registrar">
+      </form>
+</div>
+    <%}else{%>
+        <div class="alerta">
+      Usuario no autorizado
+    </div>
+      <%}%>
+</div></div><div id="pie"><%- include ('partials/footer.ejs') %></div>
   </body>
 </html>

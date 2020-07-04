@@ -55,16 +55,15 @@ router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
   console.log('buscar '+usuario);
   const el_usuario=await usuarios.findOne({usuario:usuario});
   if(el_usuario){
-    //req.flash('error_msg',"Usuario Ya existe");
-    res.render('nuevo',{rta:"Usuario Ya existe"});
-    //req.flash('error_msg',"Usuario ya existe");
+    req.flash('error_registro',"Nombre de usuario ya existe");
+    res.redirect('/main/nuevoUsuario');
   }else{
   const nuevoUsuario=new usuarios({usuario,clave});
   nuevoUsuario.clave=await nuevoUsuario.encryptPassword(clave);
   await nuevoUsuario.save();
-  //req.flash('success_msg',"Usuario registrado correctamente");
-  //res.redirect('/main/login');
-  res.render('nuevo',{rta:"Usuario registrado correctamente"});
+  req.flash('ok_registro',"Usuario registrado correctamente");
+  res.redirect('/main/nuevoUsuario');
+  //res.render('nuevoUsuario',{rtae:"Usuario registrado correctamente"});
 }//else
 });
 
@@ -79,26 +78,28 @@ router.get('/cursosMain',async (req,res)=> {
   res.render('cursosMain',{});
 });
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
-  //const nn =req.session.mivariable;
-  //delete req.session.mivariable;
   res.render('nuevoCurso',{rta:null});
 });
 
-router.post('/nuevoUsuarioS',isAuthenticated,async (req,res)=> {
-  const {usuario,clave}=req.body;
-  console.log('buscar '+usuario);
-  const el_usuario=await usuarios.findOne({usuario:usuario});
-  if(el_usuario){
-    //req.flash('error_msg',"Usuario Ya existe");
-    res.render('nuevo',{rta:"Usuario Ya existe"});
-    //req.flash('error_msg',"Usuario ya existe");
+router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
+
+  const {nombre,descripcion}=req.body;
+  const elCurso=await cursos.findOne({nombre:nombre});
+  if(elCurso){
+    req.flash('error_registro',"Nombre de curso ya existe");
+    res.redirect('/main/nuevoCurso');
   }else{
-  const nuevoUsuario=new usuarios({usuario,clave});
-  nuevoUsuario.clave=await nuevoUsuario.encryptPassword(clave);
-  await nuevoUsuario.save();
-  //req.flash('success_msg',"Usuario registrado correctamente");
-  //res.redirect('/main/login');
-  res.render('nuevo',{rta:"Usuario registrado correctamente"});
+    //fecha
+    var dat = new Date();
+    var mes =(parseInt(dat.getMonth()))+1;
+    let fecha = dat.getDate()+"-"+mes+"-"+dat.getFullYear();
+    ///
+  const nuevoCurso=new cursos({nombre,fecha,descripcion});
+  nuevoCurso.user=req.user.id;
+  await nuevoCurso.save();
+  req.flash('ok_registro',"Curso registrado correctamente");
+  res.redirect('/main/nuevoCurso');
+
 }//else
 });
 ///////////////

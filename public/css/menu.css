@@ -1,9 +1,11 @@
-div#navUsuarios{
-  //background-color:#e3f2fd;
-  background-color:white;
+div#navUsuarios, div#navCursos{
+  border-radius: 6px;
+  background-color:#f0f1f3;
 }
 
-div#navUsuarios ul.nav li.nav-item:hover, div#menuMain ul.nav li.nav-item:hover{
+div#navUsuarios ul.nav li.nav-item:hover,
+div#navCursos ul.nav li.nav-item:hover,
+div#navGeneral ul.nav li.nav-item:hover{
   -moz-border-radius:1em;
    -webkit-border-radius: 5px 5px 5px 5px;
    background: #f9edbe;
