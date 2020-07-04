@@ -7,23 +7,16 @@
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
-
+<div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
-      <% if (user) { %>
 
-
-
-       <% if (rta) { %>
+       <% if (user) { %>
           <i> <%= rta %></i>
-        <% } %>
-
-
       <form action="/main/nuevo" method="POST">
         <input type="text"  name="usuario" autofocus placeholder="Usuario">
         <input type="password"  name="clave" value="" placeholder="Clave">
         <input type="submit" name="boton" value="Nuevo usuario">
       </form>
-
 
     <%}else{%>
       Usuario no autorizado
