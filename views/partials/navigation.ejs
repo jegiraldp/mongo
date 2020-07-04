@@ -2,27 +2,29 @@
 <link rel="stylesheet" type="text/css" href="/css/menu.css" />
 <div id="menuMain">
     <ul class="nav" >
+      <% if (!user) { %>
       <li class="nav-item active">
-        <a class="nav-link" href="/main">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/main">
+          <img src="/img/home.png">
+          Home<span class="sr-only">(current)</span></a>
       </li>
       <li>
-        <a  href="#">|</a>
+        <a class="nav-link" href="#">|</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="/main/nuevook">Ver usuarios</a>
+        <a class="nav-link" href="/main/cursos">
+          <img src="/img/courses.png">
+          Listado de cursos</a>
       </li>
 
       <li>
-        <a  href="#">|</a>
+        <a  class="nav-link" href="#">|</a>
       </li>
-
-        <% if (user) { %>
-      <li class="nav-item">
-        <a class="nav-link" href="/main/logout">Salir</a>
-      </li>
-      <% }else{%>
         <li class="nav-item">
-          <a class="nav-link" href="/main/login">Ingresar</a>
+          <a class="nav-link" href="/main/login">
+            <img src="/img/login.png">
+            Ingresar</a>
         </li>
         <%}%>
       </ul>

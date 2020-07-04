@@ -5,26 +5,30 @@
     <ul class="nav">
 
       <li class="nav-item active">
-        <a class="nav-link" href="/main/nuevo">Nuevo Curso<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/main/cursosMain">
+          <img src="/img/courses.png">
+          Gestión Cursos<span class="sr-only">(current)</span></a>
       </li>
-      <li >
+      <li>
         <a class="nav-link" href="#">|</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/main/nuevook">Mis cursos</a>
-      </li>
-      <li >
-        <a class="nav-link" href="#">|</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/main/nuevo">Lista de Usuarios</a>
+        <a class="nav-link" href="/main/usuariosMain"><img src="/img/users.png">Gestión Usuarios</a>
       </li><li >
         <a class="nav-link" href="#">|</a>
       </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/main/nuevo">Mis usuario</a>
+        
+        <li>
+          <a class="nav-link" href="#">
+            <img src="/img/user.png">&nbsp;<%= user.usuario %></a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">|</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="/main/logout"><img src="/img/exit.png">Salir</a>
+        </li>
 
 
       </ul>  <%}%>

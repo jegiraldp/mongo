@@ -4,25 +4,19 @@
     <meta charset="utf-8">
     <title></title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="/css/menuU.css" />
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
-    <div>
-  <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
+    <div><%- include ('partials/navigationGestionUsuarios.ejs') %></div>
+    <div class="card">
+      <div class="jumbotron" style="background-color: white">
 
-                    <% if (user) { %>
-                        <div> <b>Usuario:</b> <%= user.usuario %></div><hr/>
-                  <% } %>
-                        <% if (rta) {%>
-
-                        <%  rta.forEach(function(rta){%>
-                          <%= rta.usuario %><br/>
-
-                          <% }); }%>
-
-
-</div></div>
+      <% if (user) { %>
+        <b>- Gestión de Usuarios -</b>
+      <% } %>
+      </div></div>
 
   </body>
 </html>

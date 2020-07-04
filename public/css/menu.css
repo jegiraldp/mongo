@@ -1,13 +1,10 @@
 div#navUsuarios{
-  background-color:#e3f2fd;
+  //background-color:#e3f2fd;
+  background-color:white;
 }
 
 div#navUsuarios ul.nav li.nav-item:hover, div#menuMain ul.nav li.nav-item:hover{
   -moz-border-radius:1em;
    -webkit-border-radius: 5px 5px 5px 5px;
-
-
-       background: #f9edbe;
-
-
+   background: #f9edbe;
 }
