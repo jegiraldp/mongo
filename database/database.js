@@ -1,5 +1,6 @@
 mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/ot2020',{
+//mongoose.connect('mongodb://localhost/ot2020',{
+mongoose.connect('mongodb+srv://jorge:123@clusteropentopic.8pddu.mongodb.net/<dbname>?retryWrites=true&w=majority',{
   useCreateIndex:true,
   useNewUrlParser:true,
   useFindAndModify:false

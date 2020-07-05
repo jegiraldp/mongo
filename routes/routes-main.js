@@ -22,7 +22,7 @@ router.get('/menuCursos',(req,res)=> {
 
 router.get('/logout',(req,res)=> {
   req.logout();
-  res.redirect('/main');
+  res.redirect('/main/cursos');
   //res.render('index',{rta:'No logueado....'});
 });
 
@@ -39,7 +39,7 @@ router.get('/usuariosMain',async (req,res)=> {
   res.render('usuariosMain',{});
 });
 
-router.get('/usuarios',async (req,res)=> {
+router.get('/usuarios',isAuthenticated,async (req,res)=> {
   const rta=await usuarios.find();
   res.render('usuarios',{rta});
 });
@@ -71,10 +71,15 @@ router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
 
 router.get('/cursos',async (req,res)=> {
   const rta=await cursos.find();
+  res.render('cursos',{rta:rta});
+});
+
+router.get('/misCursos',async (req,res)=> {
+  const rta=await cursos.find({user:req.user.id});
   res.render('cursos',{rta});
 });
 
-router.get('/cursosMain',async (req,res)=> {
+router.get('/cursosMain',isAuthenticated,async (req,res)=> {
   res.render('cursosMain',{});
 });
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
@@ -95,7 +100,9 @@ router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
     let fecha = dat.getDate()+"-"+mes+"-"+dat.getFullYear();
     ///
   const nuevoCurso=new cursos({nombre,fecha,descripcion});
+  //const nCreador=await cursos.findOne({usuario:req.user.id});
   nuevoCurso.user=req.user.id;
+  //nuevoCurso.creador=nCreador;
   await nuevoCurso.save();
   req.flash('ok_registro',"Curso registrado correctamente");
   res.redirect('/main/nuevoCurso');
