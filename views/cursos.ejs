@@ -5,6 +5,7 @@
     <title></title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/css/index.css" />
+<link rel="stylesheet" type="text/css" href="/css/tablaCursos.css" />
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
@@ -14,10 +15,40 @@
   <div class="card">
     <div class="jumbotron mt-0" style="background-color: white;">
 
-        <% if (rta) {%>
+      <% if (user) {%>
+        <table id="tablaInicio">
+          <tr class="losTH">
+            <th>Nombre del curso</th><th>Descripción</th><th>Fecha de creación</th>
+          </tr>
+      <%  rta.forEach(function(rta){%>
+          <tr class="curso">
+            <td><%= rta.nombre %></td>
+              <td><%= rta.descripcion %></td>
+            <td><%= rta.fecha %></td>
+
+          </tr>
+
+      <% });%>
+    </table>
+    <%}%>
+
+        <% if (rta && !user) {%>
+          <table id="tablaInicio">
+            <tr class="losTH">
+              <th>Nombre del curso</th><th>Descripción</th><th>Fecha de creación</th><th>Creador</th>
+            </tr>
         <%  rta.forEach(function(rta){%>
-          <%= rta.nombre %> -- <%= rta.creador %> -- <%= rta.correo %> -- <%= rta.fecha %> -- <%= rta.descripcion %><br/>
-        <% }); }%>
+            <tr class="curso">
+              <td><%= rta.nombre %></td>
+              <td><%= rta.descripcion %></td>
+              <td><%= rta.fecha %></td>
+
+              <td><%= rta.creador %></td>
+            </tr>
+
+        <% });%>
+      </table>
+      <%}%>
 
 
 </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>

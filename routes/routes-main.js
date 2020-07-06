@@ -107,11 +107,14 @@ if(nombre.length==0 || descripcion.length==0){
     var mes =(parseInt(dat.getMonth()))+1;
     let fecha = dat.getDate()+"-"+mes+"-"+dat.getFullYear();
     ///
+
+  const creador=await usuarios.findById(req.user.id);
+  const nombreCreador=creador.nombre;
   const nuevoCurso=new cursos({nombre,fecha,descripcion});
-  //const creador=await cursos.findById(req.user.id);
-  //console.log(creador);
-  //nuevoCurso.creador=creador;
+
+  nuevoCurso.creador=nombreCreador;
   nuevoCurso.user=req.user.id;
+  //console.log(nuevoCurso);
   await nuevoCurso.save();
   req.flash('ok_registro',"Curso registrado correctamente");
   res.redirect('/main/nuevoCurso');

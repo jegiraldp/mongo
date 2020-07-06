@@ -1,0 +1,25 @@
+table#tablaInicio{
+  width: 100%;
+  border-collapse: collapse;
+  //border: 1px solid #AAAAAA;
+
+}
+
+table#tablaInicio tr.losTH{
+	text-align:left;
+//	color:red;
+}
+
+tr.curso td, tr th{
+  border-bottom:1pt solid #ccc;
+}
+
+tr.curso td{
+  font-size: 14px;
+  padding-bottom: 15px;
+}
+
+tr.curso:hover{
+  background-color: #f9edbe;
+  //font-style: italic;
+}
