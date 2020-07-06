@@ -11,7 +11,11 @@
     <div><%- include ('partials/navigation.ejs') %></div>
 <div><%- include ('partials/navigationUsuarios.ejs') %></div>
 <div><%- include ('partials/navigationGestionCursos.ejs') %></div>
+<div class="container">
     <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
+      <div class="alertaEscondido">
+
+      </div>
       <% if(error_registro) {%></i>
       <div class="alerta">
         <%= error_registro %>
@@ -26,7 +30,7 @@
       <div class="alertaVerde">
       </div>
        <% if (user) { %>
-          <br/>  <form action="/main/nuevoCurso" method="POST">
+          <br/>  <form name="f1" action="/main/nuevoCurso" method="POST">
       <div class="form-group">
         <input type="text"  class="form-control" name="nombre"
         autofocus placeholder="Nombre del curso" aria-describedby="emailHelp" />
@@ -35,7 +39,7 @@
       <div class="form-group">
         <textarea rows="5" cols="55"  class="form-control" name="descripcion"
         autofocus placeholder="Descripción breve"></textarea>
-        <small id="emailHelp" class="form-text text-muted">Descripción breve</small>
+        <small id="emailHelp" class="form-text text-muted">Descripción breve del curso</small>
       </div>
         <input class="btn btn-primary" type="submit" name="boton" value="Registrar">
       </form>
@@ -46,5 +50,7 @@
     </div>
       <%}%>
 </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div>
+</div>
+</script>
   </body>
 </html>

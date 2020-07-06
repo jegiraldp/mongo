@@ -51,20 +51,24 @@ router.get('/nuevoUsuario',isAuthenticated,(req,res)=> {
 });
 
 router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
-  const {usuario,clave}=req.body;
-  console.log('buscar '+usuario);
+  const {usuario,clave,nombre}=req.body;
+  if(usuario.length==0 || nombre.length==0 || clave.length==0){
+    req.flash('error_registro',"Faltan datos del usuario");
+      res.redirect('/main/nuevoUsuario');
+  }else {
   const el_usuario=await usuarios.findOne({usuario:usuario});
   if(el_usuario){
     req.flash('error_registro',"Nombre de usuario ya existe");
     res.redirect('/main/nuevoUsuario');
   }else{
-  const nuevoUsuario=new usuarios({usuario,clave});
+  const nuevoUsuario=new usuarios({usuario,clave,nombre});
   nuevoUsuario.clave=await nuevoUsuario.encryptPassword(clave);
   await nuevoUsuario.save();
   req.flash('ok_registro',"Usuario registrado correctamente");
   res.redirect('/main/nuevoUsuario');
   //res.render('nuevoUsuario',{rtae:"Usuario registrado correctamente"});
 }//else
+}//else main
 });
 
 ////cursos
@@ -88,7 +92,11 @@ router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
 
 router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
 
-  const {nombre,descripcion}=req.body;
+const {nombre,descripcion}=req.body;
+if(nombre.length==0 || descripcion.length==0){
+  req.flash('error_registro',"Faltan datos del curso");
+    res.redirect('/main/nuevoCurso');
+}else {
   const elCurso=await cursos.findOne({nombre:nombre});
   if(elCurso){
     req.flash('error_registro',"Nombre de curso ya existe");
@@ -100,14 +108,20 @@ router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
     let fecha = dat.getDate()+"-"+mes+"-"+dat.getFullYear();
     ///
   const nuevoCurso=new cursos({nombre,fecha,descripcion});
-  //const nCreador=await cursos.findOne({usuario:req.user.id});
+  //const creador=await cursos.findById(req.user.id);
+  //console.log(creador);
+  //nuevoCurso.creador=creador;
   nuevoCurso.user=req.user.id;
-  //nuevoCurso.creador=nCreador;
   await nuevoCurso.save();
   req.flash('ok_registro',"Curso registrado correctamente");
   res.redirect('/main/nuevoCurso');
 
 }//else
+
+}//else main
+
+
+
 });
 ///////////////
 

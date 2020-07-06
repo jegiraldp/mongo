@@ -4,7 +4,8 @@ const {Schema} = mongoose;
 
 const userSchema= new Schema({
 usuario: {type:String, required:true},
-clave: {type:String, required:true}
+clave: {type:String, required:true},
+nombre: {type:String, required:true}
 });
 
 userSchema.methods.encryptPassword=async function (clave) {

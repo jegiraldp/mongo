@@ -11,7 +11,8 @@
     <div><%- include ('partials/navigation.ejs') %></div>
 <div><%- include ('partials/navigationUsuarios.ejs') %></div>
 <div><%- include ('partials/navigationGestionUsuarios.ejs') %></div>
-    <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
+<div class="container">
+      <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
       <% if(error_registro) {%></i>
       <div class="alerta">
         <%= error_registro %>
@@ -27,10 +28,15 @@
       </div>
        <% if (user) { %>
           <br/>  <form action="/main/nuevoUsuario" method="POST">
+            <div class="form-group">
+              <input type="text"  class="form-control" name="nombre" autofocus placeholder="Nombre completo" aria-describedby="emailHelp" />
+              <small id="emailHelp" class="form-text text-muted">Nombre completo</small>
+            </div>
       <div class="form-group">
         <input type="text"  class="form-control" name="usuario" autofocus placeholder="Usuario" aria-describedby="emailHelp" />
         <small id="emailHelp" class="form-text text-muted">Usuario</small>
       </div>
+
       <div class="form-group">
         <input type="password"  class="form-control" name="clave" value="" placeholder="Clave" aria-describedby="emailHelp" />
         <small id="emailHelp" class="form-text text-muted">Clave</small>
@@ -43,6 +49,6 @@
       Usuario no autorizado
     </div>
       <%}%>
-</div></div><div id="pie"><%- include ('partials/footer.ejs') %></div>
+</div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>
   </body>
 </html>

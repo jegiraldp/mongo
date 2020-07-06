@@ -10,11 +10,12 @@
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
+    <div class="container">
     <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
     <% if (rta) { %>
         <i> <%= rta %></i>
       <% } %>
     </div></div>
-    <div id="pie"><%- include ('partials/footer.ejs') %></div>
+    <div id="pie"><%- include ('partials/footer.ejs') %></div></div>
   </body>
 </html>

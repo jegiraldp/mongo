@@ -10,14 +10,15 @@
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
+    <div class="container">
     <div class="card">
       <div class="jumbotron" style="background-color: white">
 
       <% if (user) { %>
         <b>Bienvenido</b>
-          <i> <%= user.usuario %></i>
+          <i> <%= user.nombre %></i>
         <% } %>
-      </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div>
+      </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>
 
   </body>
 </html>
