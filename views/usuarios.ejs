@@ -5,6 +5,7 @@
     <title></title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/css/index.css" />
+<link rel="stylesheet" type="text/css" href="/css/tablaUsuarios.css" />
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
@@ -13,12 +14,22 @@
     <div><div class="container">
   <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
 
-                                      <% if (rta) {%>
+                      <% if (rta && user) {%>
+
+                        <table id="tablaInicio">
+                          <tr class="losTH">
+                            <th>Usuario</th><th>Nombre completo</th>
+                          </tr>
 
                         <%  rta.forEach(function(rta){%>
-                          <%= rta.usuario %>--<%= rta.nombre %><br/>
+                          <tr class="curso">
+                            <td><%= rta.usuario %></td>
+                              <td><%= rta.nombre %></td>
+                          </tr>
 
-                          <% }); }%>
+                          <% }); %>
+                        </table>
+                        <%}%>
 
 
 </div></div>
