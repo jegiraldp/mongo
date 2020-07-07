@@ -1,5 +1,6 @@
 const express = require('express');
 const mainRoutes=require('./routes/routes-main');
+var methodOverride = require('method-override')
 
 var cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
@@ -14,6 +15,7 @@ require("./config/passport.js");
 //use
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 app.use(session({
@@ -39,6 +41,7 @@ app.use((req,res,next)=>{
   res.locals.error_msg=req.flash('error_msg');
   res.locals.error_registro=req.flash('error_registro');
   res.locals.error=req.flash('error');
+  res.locals.informacion=req.flash('informacion');
   res.locals.user=req.user || null;
   next();
 });

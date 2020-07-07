@@ -131,7 +131,26 @@ if(nombre.length==0 || descripcion.length==0){
 
 
 });
+
+/////////////
+router.get('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
+  const rta=await cursos.findById(req.params._id);
+  res.render('editarCurso',
+  {
+    rta:rta,
+    informacion:'>> Editando curso '+rta.nombre});
+
+});
 ///////////////
+router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
+  const {nombre,descripcion}= req.body;
+  await cursos.findByIdAndUpdate(req.params._id,{nombre, descripcion});
+  req.flash('ok_registro',"Curso "+nombre+" editado correctamente");
+  res.redirect('/main/misCursos');
+
+});
+
+//////////////
 
 
 router.get('/login',(req,res)=> {

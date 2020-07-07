@@ -10,3 +10,10 @@ div.alertaVerde{
       border-color: black;
       font-weight: bold;
 }
+
+div.alertaNaranja{
+  color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+
+}

@@ -13,6 +13,15 @@
           <img src="/img/eye.png">
           Mis cursos<span class="sr-only">(current)</span></a>
       </li>
+      <% if (user.usuario=='admin') { %>
+      <li >
+        <a class="nav-link">|</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/main/cursos"><img src="/img/courses.png">Todos los cursos</a>
+      </li>
+
+  <%}%>
       <li >
         <a class="nav-link">|</a>
       </li>

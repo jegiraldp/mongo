@@ -27,21 +27,27 @@
       </div>
       <%}%>
 
-      <div class="alertaVerde">
+      <% if(informacion) {%>
+      <div class="alertaNaranja">
+        <%= informacion %>
       </div>
-       <% if (user) { %>
-          <br/>  <form name="f1" action="/main/nuevoCurso" method="POST">
+      <%}%>
+
+
+       <% if (user && rta) { %>
+          <br/>  <form name="f1" action="/main/editarCurso/<%= rta._id %>?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
       <div class="form-group">
-        <input type="text"  class="form-control" name="nombre"
+        <input type="text"  class="form-control" name="nombre" value="<%=rta.nombre%>"
         autofocus placeholder="Nombre del curso" aria-describedby="emailHelp" />
         <small id="emailHelp" class="form-text text-muted">Nombre del curso</small>
       </div>
       <div class="form-group">
         <textarea rows="5" cols="55"  class="form-control" name="descripcion"
-        autofocus placeholder="Descripción breve"></textarea>
+        autofocus placeholder="Descripción breve"><%=rta.descripcion%></textarea>
         <small id="emailHelp" class="form-text text-muted">Descripción breve del curso</small>
       </div>
-        <input class="btn btn-primary" type="submit" name="boton" value="Registrar">
+        <input class="btn btn-primary" type="submit" name="boton" value="Editar Curso">
       </form>
 </div>
     <%}else{%>
@@ -49,8 +55,7 @@
       Usuario no autorizado
     </div>
       <%}%>
-</div></div><div id="pie"><%- include ('partials/footer.ejs') %></div>
+</div><div id="pie"><%- include ('partials/footer.ejs') %></div>
 </div>
-</script>
   </body>
 </html>

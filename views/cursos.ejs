@@ -6,6 +6,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/css/index.css" />
 <link rel="stylesheet" type="text/css" href="/css/tablaCursos.css" />
+<link rel="stylesheet" type="text/css" href="/css/nuevoCurso.css" />
   </head>
   <body>
     <div><%- include ('partials/navigation.ejs') %></div>
@@ -14,36 +15,44 @@
     <div><div class="container">
   <div class="card">
     <div class="jumbotron mt-0" style="background-color: white;">
-
+      <% if(ok_registro) {%>
+      <div class="alertaVerde">
+        <%= ok_registro %>
+      </div><br/>
+      <%}%>
       <% if (user) {%>
+        <% if(rta.length==0){ %>
+          No hay cursos registrados.
+        <% }else {%>
         <table id="tablaInicio">
           <tr class="losTH">
-            <th>Nombre del curso</th><th>Descripción</th><th>Fecha de creación</th>
+            <th>Nombre del curso</th><th>Descripción</th><th>Fecha de creación</th><th>Opciones</th>
           </tr>
       <%  rta.forEach(function(rta){%>
           <tr class="curso">
-            <td><%= rta.nombre %></td>
+            <td><a href="/main/editarCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
               <td><%= rta.descripcion %></td>
             <td><%= rta.fecha %></td>
-
+            <td>
+              <img src="../img/settingCurso.png" alt="Gestionar contenidos">
+            </td>
           </tr>
 
       <% });%>
     </table>
+      <%}%>
     <%}%>
 
         <% if (rta && !user) {%>
           <table id="tablaInicio">
             <tr class="losTH">
-              <th>Nombre del curso</th><th>Descripción</th><th>Fecha de creación</th><th>Creador</th>
+              <th>Nombre del curso</th><th>Descripción</th>
             </tr>
         <%  rta.forEach(function(rta){%>
             <tr class="curso">
               <td><%= rta.nombre %></td>
               <td><%= rta.descripcion %></td>
-              <td><%= rta.fecha %></td>
-
-              <td><%= rta.creador %></td>
+        
             </tr>
 
         <% });%>
