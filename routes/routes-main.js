@@ -6,12 +6,17 @@ const passport=require('passport');
 const {isAuthenticated} = require('../helpers/auth');
 
 router.get('/',(req,res)=> {
-  const rta=99;
-  res.render('index.ejs',{rta:''});
+  const rta='- Bienvenido - ';
+  res.render('index',{rta});
   //res.write('hola parcero');
   //res.end();
 });
-
+router.get('/about',(req,res)=> {
+  const rta='Acerca de';
+  res.render('about',{rta});
+  //res.write('hola parcero');
+  //res.end();
+});
 router.get('/menuCursos',(req,res)=> {
   res.render('menuCursos');
   //res.write('hola parcero');
