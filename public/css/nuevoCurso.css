@@ -17,3 +17,8 @@ div.alertaNaranja{
     border-color: #ffeeba;
 
 }
+
+div.jumbotron{
+   padding: 20px 30px;
+   background-color: white;
+}

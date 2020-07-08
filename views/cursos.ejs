@@ -14,7 +14,9 @@
     <div><%- include ('partials/navigationGestionCursos.ejs') %></div>
     <div><div class="container">
   <div class="card">
-    <div class="jumbotron mt-0" style="background-color: white;">
+
+    <div class="jumbotron">
+
       <% if(ok_registro) {%>
       <div class="alertaVerde">
         <%= ok_registro %>
@@ -24,18 +26,30 @@
         <% if(rta.length==0){ %>
           No hay cursos registrados.
         <% }else {%>
+            <h4 class="card-title">Mis cursos</h4>
         <table id="tablaInicio">
           <tr class="losTH">
-            <th>Nombre del curso</th><th>Descripción</th><th>Fecha de creación</th><th>Opciones</th>
+            <th>Nombre del curso</th>
+
+
+            <th>Opciones</th>
           </tr>
       <%  rta.forEach(function(rta){%>
           <tr class="curso">
+
             <td><a href="/main/editarCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
-              <td><%= rta.descripcion %></td>
-            <td><%= rta.fecha %></td>
             <td>
-              <img src="../img/settingCurso.png" alt="Gestionar contenidos">
-            </td>
+            <a href="/main/editarCurso/<%= rta._id %>">
+            <img src="../img/settingCurso.png" alt="Gestionar contenidos">Gestionar
+            </a>&nbsp;&nbsp;
+            <a href="/main/editarCurso/<%= rta._id %>">
+            <img src="../img/editarCurso.png" alt="Editar curso">Editar
+            </a>&nbsp;&nbsp;
+            <a href="/main/deleteCurso/<%= rta._id %>">
+            <img src="../img/delete.png" alt="Eliminar curso">Eliminar
+            </a>
+
+          </td>
           </tr>
 
       <% });%>
@@ -50,9 +64,9 @@
             </tr>
         <%  rta.forEach(function(rta){%>
             <tr class="curso">
-              <td><%= rta.nombre %></td>
+              <td><a href="#"><%= rta.nombre %></a></td>
               <td><%= rta.descripcion %></td>
-        
+
             </tr>
 
         <% });%>

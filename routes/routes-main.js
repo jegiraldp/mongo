@@ -5,18 +5,22 @@ const cursos=require('../models/cursos');
 const passport=require('passport');
 const {isAuthenticated} = require('../helpers/auth');
 
+
+//////////////////////////////
 router.get('/',(req,res)=> {
   const rta='- Bienvenido - ';
   res.render('index',{rta});
   //res.write('hola parcero');
   //res.end();
 });
+//////////////////////////////
 router.get('/about',(req,res)=> {
   const rta='Acerca de';
   res.render('about',{rta});
   //res.write('hola parcero');
   //res.end();
 });
+//////////////////////////////
 router.get('/menuCursos',(req,res)=> {
   res.render('menuCursos');
   //res.write('hola parcero');
@@ -24,37 +28,34 @@ router.get('/menuCursos',(req,res)=> {
 });
 
 
-
+//////////////////////////////
 router.get('/logout',(req,res)=> {
   req.logout();
   res.redirect('/main/cursos');
   //res.render('index',{rta:'No logueado....'});
 });
 
+//////////////////////////////
 router.get('/inicio',(req,res)=> {
   res.render('inicio');
 });
 
-
-
-
-
-//usuarios
+//usuarios//////////////////////////////
 router.get('/usuariosMain',async (req,res)=> {
   res.render('usuariosMain',{});
 });
-
+//////////////////////////////
 router.get('/usuarios',isAuthenticated,async (req,res)=> {
   const rta=await usuarios.find();
   res.render('usuarios',{rta});
 });
-
+//////////////////////////////
 router.get('/nuevoUsuario',isAuthenticated,(req,res)=> {
   //const nn =req.session.mivariable;
   //delete req.session.mivariable;
   res.render('nuevoUsuario',{rta:null});
 });
-
+//////////////////////////////
 router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
   const {usuario,clave,nombre}=req.body;
   if(usuario.length==0 || nombre.length==0 || clave.length==0){
@@ -77,24 +78,26 @@ router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
 });
 
 ////cursos
-
+//////////////////////////////
 router.get('/cursos',async (req,res)=> {
   const rta=await cursos.find();
   res.render('cursos',{rta:rta});
 });
-
+//////////////////////////////
 router.get('/misCursos',async (req,res)=> {
   const rta=await cursos.find({user:req.user.id});
   res.render('cursos',{rta});
 });
-
+//////////////////////////////
 router.get('/cursosMain',isAuthenticated,async (req,res)=> {
   res.render('cursosMain',{});
 });
+//////////////////////////////
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
   res.render('nuevoCurso',{rta:null});
 });
 
+//////////////////////////////
 router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
 
 const {nombre,descripcion}=req.body;
@@ -132,7 +135,7 @@ if(nombre.length==0 || descripcion.length==0){
 
 });
 
-/////////////
+//////////////////////////////
 router.get('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
   const rta=await cursos.findById(req.params._id);
   res.render('editarCurso',
@@ -141,7 +144,7 @@ router.get('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
     informacion:'>> Editando curso '+rta.nombre});
 
 });
-///////////////
+//////////////////////////////
 router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
   const {nombre,descripcion}= req.body;
   await cursos.findByIdAndUpdate(req.params._id,{nombre, descripcion});
@@ -150,7 +153,14 @@ router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
 
 });
 
-//////////////
+//////////////////////////////
+router.get('/deleteCurso/:_id',isAuthenticated,async(req,res)=> {
+const cursoDelete= await cursos.findById(req.params._id);
+console.log('Eliminar '+cursoDelete.nombre);
+
+});
+
+//////////////////////////////
 
 
 router.get('/login',(req,res)=> {

@@ -23,3 +23,7 @@ tr.curso:hover{
   background-color: #f9edbe;
   //font-style: italic;
 }
+div.jumbotron{
+   padding: 20px 30px;
+   background-color: white;
+}
