@@ -155,8 +155,9 @@ router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
 
 //////////////////////////////
 router.get('/deleteCurso/:_id',isAuthenticated,async(req,res)=> {
-const cursoDelete= await cursos.findById(req.params._id);
-console.log('Eliminar '+cursoDelete.nombre);
+const cursoDelete= await cursos.findByIdAndDelete(req.params._id);
+req.flash('ok_registro',"Curso "+cursoDelete.nombre+" eliminado correctamente");
+res.redirect('/main/misCursos');
 
 });
 
