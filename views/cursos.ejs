@@ -47,18 +47,46 @@
       <%  rta.forEach(function(rta){%>
           <tr class="curso">
 
-            <td><a href="/main/editarCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
+            <td id="nombre"><a href="/main/editarCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
             <td>
             <a href="/main/editarCurso/<%= rta._id %>">
             <img src="../img/settingCurso.png" alt="Gestionar contenidos">Gestionar
             </a>&nbsp;&nbsp;
+
             <a href="/main/editarCurso/<%= rta._id %>">
             <img src="../img/editarCurso.png" alt="Editar curso">Editar
             </a>&nbsp;&nbsp;
-            <a href="/main/deleteCurso/<%= rta._id %>">
-            <img src="../img/delete.png" alt="Eliminar curso">Eliminar
-            </a>
 
+            <!--////////////////
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              <!--<a href="/main/deleteCurso/<%= rta._id %>">-->
+              <img src="../img/delete.png" alt="Eliminar curso">Eliminar
+              <!--</a>-->
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel">Confirmar</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            ¿Seguro desea eliminar el curso?
+            </body>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Confirmo eliminar</button>
+            </div>
+            </div>
+            </div>
+            </div>
+            <!--////////////////-->
           </td>
           </tr>
 
@@ -68,13 +96,14 @@
     <%}%>
 
         <% if (rta && !user) {%>
+          <h4 class="card-title">Cursos en OpenTopic</h4><br/>
           <table id="tablaInicio">
             <tr class="losTH">
               <th>Nombre del curso</th><th>Descripción</th>
             </tr>
         <%  rta.forEach(function(rta){%>
             <tr class="curso">
-              <td><a href="#"><%= rta.nombre %></a></td>
+              <td   id="nombre"><a href="#"><%= rta.nombre %></a></td>
               <td><%= rta.descripcion %></td>
 
             </tr>

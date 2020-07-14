@@ -19,7 +19,18 @@ tr.curso td{
   padding-bottom: 15px;
 }
 
-tr.curso:hover{
+td#nombre:hover{
+  //background-color: #f9edbe;
+  font-style: italic;
+}
+
+button.btn {
+  background-color: white;
+  color:blue;
+  border:0px
+}
+button.btn:hover {
   background-color: #f9edbe;
-  //font-style: italic;
+  color:blue;
+  border:0px
 }
