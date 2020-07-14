@@ -76,7 +76,31 @@ router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
 }//else
 }//else main
 });
+///////////////////////
+//////////////////////////////
+router.get('/editarUsuario/:_id',isAuthenticated,async(req,res)=> {
+  const rta=await usuarios.findById(req.params._id);
+  res.render('editarUsuario', {rta:rta,informacion:'Editando:  '+rta.usuario});
+});
+//////////////////////////////
+router.put('/editarUsuario/:_id',isAuthenticated,async(req,res)=> {
+  const {nombre,usuario}= req.body;
+  await usuarios.findByIdAndUpdate(req.params._id,{nombre, usuario});
+  req.flash('ok_registro',"Usuario "+usuario+" editado correctamente");
+  res.redirect('/main/usuarios');
 
+});
+
+//////////////////////////////
+router.delete('/deleteUsuario/:_id',isAuthenticated,async(req,res)=> {
+const rta=await usuarios.findById(req.params._id);
+//await usuarios.findByIdAndDelete(req.params._id);
+req.flash('ok_registro',"Usuario "+rta.usuario+"--"+rta.nombre+" eliminado correctamente");
+res.redirect('/main/usuarios');
+
+});
+
+//////////////////////////////
 ////cursos
 //////////////////////////////
 router.get('/cursos',async (req,res)=> {
@@ -138,11 +162,7 @@ if(nombre.length==0 || descripcion.length==0){
 //////////////////////////////
 router.get('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
   const rta=await cursos.findById(req.params._id);
-  res.render('editarCurso',
-  {
-    rta:rta,
-    informacion:'Editando:  '+rta.nombre});
-
+  res.render('editarCurso', {rta:rta,informacion:'Editando:  '+rta.nombre});
 });
 //////////////////////////////
 router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
@@ -154,9 +174,10 @@ router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
 });
 
 //////////////////////////////
-router.get('/deleteCurso/:_id',isAuthenticated,async(req,res)=> {
-const cursoDelete= "Avatar";//await cursos.findByIdAndDelete(req.params._id);
-req.flash('ok_registro',"Curso "+cursoDelete.nombre+" eliminado correctamente");
+router.delete('/deleteCurso/:_id',isAuthenticated,async(req,res)=> {
+const rta=await cursos.findById(req.params._id);
+await cursos.findByIdAndDelete(req.params._id);
+req.flash('ok_registro',"Curso "+rta.nombre+" eliminado correctamente");
 res.redirect('/main/misCursos');
 
 });
