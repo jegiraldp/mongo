@@ -1,22 +1,3 @@
-div.alerta{
-color: #721c24;
-background-color: #f8d7da;
-border-color: #f5c6cb;
-font-weight: bold;
-}
-div.alertaVerde{
-  color: #155724;
-      background-color: #d4edda;
-      border-color: black;
-      font-weight: bold;
-}
-
-div.alertaNaranja{
-  color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
-
-}
 
 div.jumbotron{
    padding: 20px 30px;

@@ -141,7 +141,7 @@ router.get('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
   res.render('editarCurso',
   {
     rta:rta,
-    informacion:'>> Editando curso '+rta.nombre});
+    informacion:'Editando:  '+rta.nombre});
 
 });
 //////////////////////////////
