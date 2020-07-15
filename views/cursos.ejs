@@ -40,34 +40,32 @@
         <table id="tablaInicio">
           <tr class="losTH">
             <th>Nombre del curso</th>
-
-
             <th>Opciones</th>
           </tr>
-      <%  rta.forEach(function(rta){%>
+      <%  rta.forEach(function(text){%>
           <tr class="curso">
 
-            <td id="nombre"><a href="/main/editarCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
+            <td id="nombre">
+              <a href="#"><%= text.nombre %></a>
+            </td>
             <td>
-            <a href="/main/editarCurso/<%= rta._id %>">
-            <img src="../img/settingCurso.png" alt="Gestionar contenidos">Contenidos
+              <a href="/main/editarCurso/<%= text._id %>">
+              <img src="../img/info.png" alt="Ver detalles">Detalles
+              </a>&nbsp;&nbsp;
+
+            <a href="/main/editarCurso/<%= text._id %>">
+            <img src="../img/contenidos.png" alt="Gestionar contenidos">Contenidos
             </a>&nbsp;&nbsp;
 
-            <a href="/main/editarCurso/<%= rta._id %>">
+            <a href="/main/editarCurso/<%= text._id %>">
             <img src="../img/editarCurso.png" alt="Editar curso">Editar
             </a>&nbsp;&nbsp;
 
             <!--////////////////
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
-              <!--<a href="/main/deleteCurso/<%= rta._id %>">-->
-              <img src="../img/delete.png" alt="Eliminar curso">Eliminar
-              <!--</a>-->
-            </button>
-
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal fade" id="exampleModal<%= text._id %>" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
             <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
@@ -76,22 +74,25 @@
             </button>
             </div>
             <div class="modal-body">
-            ¿Desea eliminar el curso?
-            </body>
+            ¿Confirma que desea eliminar el curso: <b><%= text.nombre %></b>?
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-
-            <form class="" action="/main/deleteCurso/<%= rta._id %>?_method=DELETE" method="post">
+              <form class="" action="/main/deleteCurso/<%= text._id %>?_method=DELETE" method="post">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
             </form>
-
             </div>
             </div>
             </div>
             </div>
             <!--////////////////-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-link"
+            data-toggle="modal" data-target="#exampleModal<%= text._id %>"
+            aria-hidden="true">
+            <img src="../img/delete.png" alt="Eliminar curso">Eliminar
+            </button>
           </td>
           </tr>
 
@@ -104,12 +105,13 @@
           <h4 class="card-title">Cursos en OpenTopic</h4><br/>
           <table id="tablaInicio">
             <tr class="losTH">
-              <th>Nombre del curso</th><th>Descripción</th>
+              <th>Nombre del curso</th><th>Descripción</th><th>Creado por</th>
             </tr>
         <%  rta.forEach(function(rta){%>
             <tr class="curso">
               <td   id="nombre"><a href="#"><%= rta.nombre %></a></td>
               <td><%= rta.descripcion %></td>
+              <td><%= rta.creador %></td>
 
             </tr>
 

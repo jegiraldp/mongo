@@ -94,7 +94,7 @@ router.put('/editarUsuario/:_id',isAuthenticated,async(req,res)=> {
 //////////////////////////////
 router.delete('/deleteUsuario/:_id',isAuthenticated,async(req,res)=> {
 const rta=await usuarios.findById(req.params._id);
-//await usuarios.findByIdAndDelete(req.params._id);
+await usuarios.findByIdAndDelete(req.params._id);
 req.flash('ok_registro',"Usuario "+rta.usuario+"--"+rta.nombre+" eliminado correctamente");
 res.redirect('/main/usuarios');
 

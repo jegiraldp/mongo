@@ -29,30 +29,22 @@
                               <th>Usuario</th><th>Nombre completo</th><th>Opciones</th>
                             </tr>
 
-                          <%  rta.forEach(function(rta){%>
-                            <%= rta._id %><br/>
+                          <%  rta.forEach(function(text){%>
+
                             <tr class="curso">
-                              <td><%= rta.usuario %></td>
-                                <td><%= rta.nombre %></td>
+                              <td><%= text.usuario %></td>
+                                <td><%= text.nombre %></td>
                                 <td>
 
-                                <a href="/main/editarUsuario/<%= rta._id %>">
+                                <a href="/main/editarUsuario/<%= text._id %>">
                                 <img src="../img/editarCurso.png" alt="Editar curso">Editar
-                                </a>&nbsp;&nbsp;
+                              </a>&nbsp;&nbsp;
 
                                 <!--////////////////
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"
-                                data-whatever="@<%= rta.nombre %>">
-                                  <!--<a href="/main/deleteCurso/<%= rta._id %>">-->
-                                  <img src="../img/delete.png" alt="Eliminar curso">Eliminar <%= rta.usuario %>
-                                  <!--</a>-->
-                                </button>
-
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal fade" id="exampleModal<%= text.usuario %>" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
                                 <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
@@ -61,11 +53,12 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                ¿Desea eliminar usuario <b><%= rta.nombre %></b>?
+                                ¿Confirma que desea eliminar el usuario: <b><%= text.nombre %> - (<%= text.usuario %>)</b>?
+
                                 </div>
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <form class="" action="/main/deleteUsuario/<%= rta._id %>?_method=DELETE" method="post">
+                                  <form class="" action="/main/deleteUsuario/<%= text._id %>?_method=DELETE" method="post">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                   <input type="hidden" name="_method" value="DELETE">
                                   <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
                                 </form>
@@ -74,6 +67,14 @@
                                 </div>
                                 </div>
                                 <!--////////////////-->
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-link"
+                                data-toggle="modal" data-target="#exampleModal<%= text.usuario %>"
+                                aria-hidden="true">
+                                <img src="../img/delete.png" alt="Eliminar curso">Eliminar
+                                </button>
+
+
                               </td>
                             </tr>
 
