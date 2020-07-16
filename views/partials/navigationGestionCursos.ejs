@@ -1,13 +1,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <% if (user) { %>
-    <hr/>
-    <div class="container">
+
+    <div class="container">  <hr/>
     <div id="navCursos">
     <ul class="nav">
 
       <li class="nav-item active">
-        <a class="nav-link" href="/main/misCursos">
+        <a class="nav-link" href="/courses/misCursos">
           <img src="/img/eye.png">
           Mis cursos<span class="sr-only">(current)</span></a>
       </li>
@@ -16,7 +16,7 @@
         <a class="nav-link">|</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/main/cursos"><img src="/img/courses.png">&nbsp;Todos los cursos</a>
+        <a class="nav-link" href="/courses/cursos"><img src="/img/courses.png">&nbsp;Todos los cursos</a>
       </li>
 
   <%}%>
@@ -24,7 +24,7 @@
         <a class="nav-link">|</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/main/nuevoCurso"><img src="/img/add.png">&nbsp;Nuevo curso</a>
+        <a class="nav-link" href="/courses/nuevoCurso"><img src="/img/add.png">&nbsp;Nuevo curso</a>
       </li>
 
 

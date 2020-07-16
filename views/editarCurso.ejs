@@ -22,7 +22,7 @@
           <%= error_registro %>
     </div>
       <%}%>
-    
+
 
       <% if(informacion.length>0) {%>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -35,7 +35,7 @@
 
 
        <% if (user && rta) { %>
-          <br/>  <form name="f1" action="/main/editarCurso/<%= rta._id %>?_method=PUT" method="POST">
+          <br/>  <form name="f1" action="/courses/editarCurso/<%= rta._id %>?_method=PUT" method="POST">
             <input type="hidden" name="_method" value="PUT">
       <div class="form-group">
         <input type="text"  class="form-control" name="nombre" value="<%=rta.nombre%>"

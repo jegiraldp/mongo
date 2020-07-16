@@ -36,7 +36,7 @@
                                 <td><%= text.nombre %></td>
                                 <td>
 
-                                <a href="/main/editarUsuario/<%= text._id %>">
+                                <a href="/users/editarUsuario/<%= text._id %>">
                                 <img src="../img/editarCurso.png" alt="Editar curso">Editar
                               </a>&nbsp;&nbsp;
 
@@ -57,7 +57,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                  <form class="" action="/main/deleteUsuario/<%= text._id %>?_method=DELETE" method="post">
+                                  <form class="" action="/users/deleteUsuario/<%= text._id %>?_method=DELETE" method="post">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                   <input type="hidden" name="_method" value="DELETE">
                                   <button type="submit" class="btn btn-primary">Confirmo eliminar</button>

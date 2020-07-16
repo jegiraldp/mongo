@@ -46,18 +46,11 @@
           <tr class="curso">
 
             <td id="nombre">
-              <a href="#"><%= text.nombre %></a>
+              <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %></a>
             </td>
             <td>
-              <a href="/main/editarCurso/<%= text._id %>">
-              <img src="../img/info.png" alt="Ver detalles">Detalles
-              </a>&nbsp;&nbsp;
 
-            <a href="/main/editarCurso/<%= text._id %>">
-            <img src="../img/contenidos.png" alt="Gestionar contenidos">Contenidos
-            </a>&nbsp;&nbsp;
-
-            <a href="/main/editarCurso/<%= text._id %>">
+            <a href="/courses/editarCurso/<%= text._id %>">
             <img src="../img/editarCurso.png" alt="Editar curso">Editar
             </a>&nbsp;&nbsp;
 
@@ -74,10 +67,10 @@
             </button>
             </div>
             <div class="modal-body">
-            ¿Confirma que desea eliminar el curso: <b><%= text.nombre %></b>?
+            ¿Confirma eliminar: <b><%= text.nombre %></b>?
             </div>
             <div class="modal-footer">
-              <form class="" action="/main/deleteCurso/<%= text._id %>?_method=DELETE" method="post">
+              <form class="" action="/courses/deleteCurso/<%= text._id %>?_method=DELETE" method="post">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
@@ -109,7 +102,7 @@
             </tr>
         <%  rta.forEach(function(rta){%>
             <tr class="curso">
-              <td   id="nombre"><a href="#"><%= rta.nombre %></a></td>
+              <td   id="nombre"><a href="/courses/inicioCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
               <td><%= rta.descripcion %></td>
               <td><%= rta.creador %></td>
 

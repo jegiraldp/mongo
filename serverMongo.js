@@ -1,5 +1,8 @@
 const express = require('express');
 const mainRoutes=require('./routes/routes-main');
+const mainCourses=require('./routes/routesCourses');
+const mainUnits=require('./routes/routesUnits');
+const mainUsers=require('./routes/routesUsers');
 var methodOverride = require('method-override')
 
 var cookieParser = require('cookie-parser')
@@ -49,6 +52,9 @@ app.set('views',__dirname+'/views')
 app.set('public',__dirname+'/public')
 app.set('view engine','ejs');
 app.use('/main',mainRoutes);
+app.use('/courses',mainCourses);
+app.use('/users',mainUsers);
+app.use('/units',mainUnits);
 //
 app.set('trust proxy', 1) // trust first proxy
 ///////////////

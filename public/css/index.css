@@ -1,6 +1,9 @@
 div.jumbotron{
-background-color: white;
+   padding: 20px 30px;
+   background-color: white;
+   font-family: "Courier New", Courier, monospace;
 }
+
 
 div#pie{
 

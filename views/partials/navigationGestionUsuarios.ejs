@@ -7,22 +7,17 @@
   <ul class="nav">
 
     <li class="nav-item active">
-      <a class="nav-link" href="/main/usuarios">
+      <a class="nav-link" href="/users/usuarios">
         <img src="/img/eye.png">
         Ver Usuarios<span class="sr-only">(current)</span></a>
     </li>
     <% if (user.usuario=='admin') { %>
-      <li >
-        <a class="nav-link">|</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/main/nuevoUsuario"><img src="/img/aprobar.png">&nbsp;Aprobaciones</a>
-      </li>
+    
     <li >
       <a class="nav-link">|</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/main/nuevoUsuario"><img src="/img/add.png">&nbsp;Nuevo Usuario</a>
+      <a class="nav-link" href="/users/nuevoUsuario"><img src="/img/add.png">&nbsp;Nuevo Usuario</a>
     </li>
 
 <%}%>
