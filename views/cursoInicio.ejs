@@ -6,6 +6,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="/css/index.css" />
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
+      <link rel="stylesheet" type="text/css" href="/css/cursoInicio.css" />
 
   </head>
   <body>
@@ -13,15 +14,23 @@
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div><%- include ('partials/navigationInicioCurso.ejs') %></div>
     <% if (rta) { %>
-<div><%- include ('partials/navigation.ejs') %></div>
+  <div><%- include ('partials/navigation.ejs') %></div>
     <div class="container">
         <div><br/></div>
     <div class="card">
       <div class="jumbotron" style="background-color: white">
-        <b>Curso:</b> <%=rta.nombre %><br/>
-        <b>Creado por:</b> <%=rta.creador %><br/>
-        <b>Fecha:</b> <%=rta.fecha %>
-        <hr style="width:20%;text-align:left;margin-left:0">
+        <b>Curso:</b> <%=rta.nombre %>&nbsp;&nbsp;
+        (Fecha: <i><%=rta.fecha %></i>)<br/>
+        <b>Creado por:</b> <%=rta.creador %>
+        <% if (user) { %>
+                <hr style="width:40%;text-align:left;margin-left:0">
+        <a href="/units/nuevaUnidad/<%= rta._id %>">
+              <img src="/img/add.png">&nbsp;Nueva unidad</a>
+          <a>|</a>
+            <a href="/courses/cursosMain">
+              <img src="/img/add.png">&nbsp;Nuevo tema</a>
+        <% } %>
+        <br/><hr style="width:40%;text-align:left;margin-left:0">
         <b>Contenidos:</b>
       <% } %>
 

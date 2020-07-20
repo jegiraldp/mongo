@@ -7,8 +7,9 @@ const {isAuthenticated} = require('../helpers/auth');
 
 //////////////////////////////
 //usuarios//////////////////////////////
-router.get('/nuevaUnidad',async (req,res)=> {
-  res.render('nuevaUnidad',{});
+router.get('/nuevaUnidad/:_id',async (req,res)=> {
+  const rta=await cursos.findById(req.params._id);
+  res.render('nuevaUnidad',{rta});
 });
 //////////////////////////////
 
