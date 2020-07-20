@@ -2,12 +2,10 @@
 <link rel="stylesheet" type="text/css" href="/css/menu.css" />
 
 <div class="container">
-<br/>
-<div id="navGeneral">
-    <ul class="nav" >
+  <nav class="navbar navbar-expand-lg ">
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" >
       <% if (!user) { %>
-
-
       <li class="nav-item">
         <a class="nav-link" href="/courses/cursos">
           <img src="/img/courses.png">Ver cursos</a>
@@ -16,26 +14,30 @@
       <li>
       <a class="nav-link">|</a>
       </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/main/login">
-            <img src="/img/login.png">
-            Ingresar</a>
-        </li>
-        <a class="nav-link">|</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/main/login">
-              <img src="/img/login.png">
-              Registrarse</a>
-          </li>
-        <li>
-        <a class="nav-link">|</a>
-        </li>
           <li class="nav-item">
             <a class="nav-link" href="/main/about">
               <img src="/img/about.png">
               Acerca de</a>
           </li>
-        <%}%>
+
       </ul>
-</div></div>
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/main/login">
+            <img src="/img/login.png">
+            Ingresar</a>
+        </li>
+        <li>
+        <a class="nav-link">|</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/main/login">
+              <img src="/img/user.png">
+              Registrarse</a>
+          </li>
+          <%}%>
+      </ul>
+</div>
+      </nav>
+</div>
