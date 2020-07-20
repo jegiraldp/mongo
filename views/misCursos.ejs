@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/index.css" />
+<link rel="stylesheet" type="text/css" href="/css/tablaCursos.css" />
+<link rel="stylesheet" type="text/css" href="/css/menu.css" />
+  </head>
+  <body>
+
+    <div><%- include ('partials/navigationUsuarios.ejs') %></div>
+    <div><%- include ('partials/navigationGestionCursos.ejs') %></div>
+
+    <div class="container">
+        <div><br/></div>
+  <div class="card">
+<div><br/></div>
+    <div class="jumbotron">
+      <% if(ok_registro.length>0) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= ok_registro %>
+    </div>
+      <%}%>
+
+
+
+      <div class="jumbotron">
+        <% if(ok_editarCurso.length>0) {%>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            Curso <b><%= ok_editarCurso %></b> editado correctamente.
+      </div>
+        <%}%>
+
+      <% if (user) {%>
+        <% if(rta.length==0){ %>
+          No hay cursos registrados.
+        <% }else {%>
+              <% if (user.usuario=='admin') { %>
+            <h4 class="card-title">Cursos en OpenTopic</h4><br/>
+            <% } else {%>
+
+            <h4 class="card-title">Mis cursos</h4>
+
+              <%}%>
+        <table id="tablaInicio">
+          <tr class="losTH">
+            <th>Nombre del curso</th>
+            <th>Opciones</th>
+          </tr>
+      <%  rta.forEach(function(text){%>
+          <tr class="curso">
+
+            <td id="nombre">
+              <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %></a>
+            </td>
+            <td>
+
+            <a href="/courses/editarCurso/<%= text._id %>">
+            <img src="../img/editarCurso.png" alt="Editar curso">Editar
+            </a>&nbsp;&nbsp;
+
+            <!--////////////////
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal<%= text._id %>" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            ¿Confirma eliminar: <b><%= text.nombre %></b>?
+            </div>
+            <div class="modal-footer">
+              <form class="" action="/courses/deleteCurso/<%= text._id %>?_method=DELETE" method="post">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            <!--////////////////-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-link"
+            data-toggle="modal" data-target="#exampleModal<%= text._id %>"
+            aria-hidden="true">
+            <img src="../img/delete.png" alt="Eliminar curso">Eliminar
+            </button>
+          </td>
+        </tr>
+      <% });%>
+  </table>
+    <%}%>
+  <%}%>
+
+      <% if (rta && !user) {%>
+        <h4 class="card-title">Cursos en OpenTopic</h4><br/>
+        <table id="tablaInicio">
+          <tr class="losTH">
+            <th>Nombre del curso</th><th>Descripción</th><th>Creado por</th>
+          </tr>
+      <%  rta.forEach(function(rta){%>
+          <tr class="curso">
+            <td   id="nombre"><a href="/courses/inicioCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
+            <td><%= rta.descripcion %></td>
+            <td><%= rta.creador %></td>
+            </tr>
+        <% });%>
+    </table>
+    <%}%>
+</div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+ </html>

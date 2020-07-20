@@ -7,94 +7,19 @@
 <link rel="stylesheet" type="text/css" href="/css/index.css" />
 <link rel="stylesheet" type="text/css" href="/css/tablaCursos.css" />
 <link rel="stylesheet" type="text/css" href="/css/nuevoCurso.css" />
+<link rel="stylesheet" type="text/css" href="/css/menu.css" />
   </head>
   <body>
-    <div><%- include ('partials/navigation.ejs') %></div>
+
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div><%- include ('partials/navigationGestionCursos.ejs') %></div>
-
+    <div><%- include ('partials/navigation.ejs') %></div>
     <div class="container">
+        <div><br/></div>
   <div class="card">
 
     <div class="jumbotron">
-      <% if(ok_registro.length>0) {%>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <%= ok_registro %>
-    </div>
-      <%}%>
-
-      <% if (user) {%>
-        <% if(rta.length==0){ %>
-          No hay cursos registrados.
-        <% }else {%>
-              <% if (user.usuario=='admin') { %>
-            <h4 class="card-title">Cursos en OpenTopic</h4><br/>
-            <% } else {%>
-
-            <h4 class="card-title">Mis cursos</h4>
-
-              <%}%>
-        <table id="tablaInicio">
-          <tr class="losTH">
-            <th>Nombre del curso</th>
-            <th>Opciones</th>
-          </tr>
-      <%  rta.forEach(function(text){%>
-          <tr class="curso">
-
-            <td id="nombre">
-              <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %></a>
-            </td>
-            <td>
-
-            <a href="/courses/editarCurso/<%= text._id %>">
-            <img src="../img/editarCurso.png" alt="Editar curso">Editar
-            </a>&nbsp;&nbsp;
-
-            <!--////////////////
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal<%= text._id %>" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-            <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            ¿Confirma eliminar: <b><%= text.nombre %></b>?
-            </div>
-            <div class="modal-footer">
-              <form class="" action="/courses/deleteCurso/<%= text._id %>?_method=DELETE" method="post">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <input type="hidden" name="_method" value="DELETE">
-              <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
-            </form>
-            </div>
-            </div>
-            </div>
-            </div>
-            <!--////////////////-->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-link"
-            data-toggle="modal" data-target="#exampleModal<%= text._id %>"
-            aria-hidden="true">
-            <img src="../img/delete.png" alt="Eliminar curso">Eliminar
-            </button>
-          </td>
-          </tr>
-
-      <% });%>
-    </table>
-      <%}%>
-    <%}%>
-
-        <% if (rta && !user) {%>
+            <% if (rta) {%>
           <h4 class="card-title">Cursos en OpenTopic</h4><br/>
           <table id="tablaInicio">
             <tr class="losTH">

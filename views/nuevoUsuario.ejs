@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Nuevo usuario</title>
-
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/nuevoCurso.css" />
 <link rel="stylesheet" type="text/css" href="/css/index.css" />
-  <link rel="stylesheet" type="text/css" href="/css/menu.css" />
+<link rel="stylesheet" type="text/css" href="/css/menu.css" />
+
   </head>
   <body>
-<div><%- include ('partials/navigation.ejs') %></div>
+
 <div><%- include ('partials/navigationUsuarios.ejs') %></div>
 <div><%- include ('partials/navigationGestionUsuarios.ejs') %></div>
-<div class="container">
+<div class="container">  <div><br/></div>
       <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
         <h4 class="card-title">Nuevo usuario</h4>
       <% if(error_registro.length>0) {%></i>
