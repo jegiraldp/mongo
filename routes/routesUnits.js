@@ -8,18 +8,19 @@ const {isAuthenticated} = require('../helpers/auth');
 //////////////////////////////
 //usuarios//////////////////////////////
 router.get('/nuevaUnidad/:_id',isAuthenticated,async (req,res)=> {
-  const rta=await cursos.findById(req.params._id);
-  res.render('nuevaUnidad',{rta});
+  const elCurso=await cursos.findById(req.params._id);
+  res.render('nuevaUnidad',{elCurso});
 });
 //////////////////////////////
-/*
-router.post('/nuevaUnidad',isAuthenticated,async (req,res)=> {
 
+router.put('/nuevaUnidad/:_id',isAuthenticated,async (req,res)=> {
 const {nombre,descripcion}=req.body;
+console.log(req.params._id);
 if(nombre.length==0 || descripcion.length==0){
-  req.flash('error_registro',"Faltan datos del curso");
-    res.redirect('/courses/nuevoCurso');
-}else {
+  req.flash('error_registro',"Faltan datos de la unidad");
+    res.redirect('/units/nuevaUnidad/5f0e6cff6f92eb0d241aa619');
+    console.log("Faltan datos");
+}/*else {
   const elCurso=await cursos.findOne({nombre:nombre});
   if(elCurso){
     req.flash('error_registro',"Nombre de curso ya existe");
@@ -45,10 +46,9 @@ if(nombre.length==0 || descripcion.length==0){
 }//else
 
 }//else main
-
-
+*/
 
 });
-*/
+
 /////////
 module.exports=router;

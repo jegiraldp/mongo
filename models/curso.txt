@@ -1,0 +1,19 @@
+db.curso.insert({nombre:"poo",tipo:"1",unidad:[{id:"1",nombre:"intro",tema:[{id:"1",name:"clases"},{id:"2",name:"objetos"}]},{id:"2",nombre:"metodos", tema:[{id:"1",name:"acceso"},{id:"2",name:"visibilidad"}]}]})
+
+////find
+db.curso.find({nombre:"logica1","unidad.nombre":"unit3"},{"unidad.tema.name":"tema1"})
+db.curso.find({"nombre":"poo"},{"unidad.tema.name":1}).pretty()
+
+db.curso.find({"nombre":"poo","unidad.id":"2","unidad.tema.name":"acceso"},{"unidad.tema.name":1}).pretty()
+
+db.curso.find({"_id":ObjectId("5f19be54af0940f84871c24d"), "unidad.id":"2","unidad.tema.id":"2"},{"unidad.tema.name":1}).pretty()
+
+db.curso.find().forEach(curso=>print(curso.nombre))
+db.curso.find({"_id":ObjectId("5f19be54af0940f84871c24d")}).forEach(function(c){print(c.nombre)})
+db.curso.find().forEach(function(c){print(c.nombre)})
+db.curso.find().forEach(function(c){printjson(c.unidad)})
+///
+db.curso.aggregate([{$unwind:{path:"$unidad",includeArrayIndex: "arrayIndex"}}]).forEach(function(doc){print(doc.unidad.nombre)})
+db.curso.aggregate([{$unwind:{path:"$unidad"}},{$unwind:{path:"$unidad.tema"}}]).forEach(function(doc){print(doc.unidad.tema.name)})
+
+///update
