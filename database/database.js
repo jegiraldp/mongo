@@ -7,3 +7,6 @@ mongoose.connect('mongodb+srv://admin:123@clusteropentopic.8pddu.mongodb.net/ot2
 })
 .then(bd=>console.log("conectado"))
 .catch(err=>console.log("error - no conectado"))
+
+
+//.then(bd=>console.log("conectado"))

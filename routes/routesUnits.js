@@ -7,46 +7,23 @@ const {isAuthenticated} = require('../helpers/auth');
 
 //////////////////////////////
 //usuarios//////////////////////////////
-router.get('/nuevaUnidad/:_id',isAuthenticated,async (req,res)=> {
+router.get('/nuevaUnidad/:_id/:estado',isAuthenticated,async (req,res)=> {
   const elCurso=await cursos.findById(req.params._id);
-  res.render('nuevaUnidad',{elCurso});
+  const estado=req.params.estado;
+  if(estado=="2"){
+    res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Faltan datos de la unidad"});
+  }else{
+
+  res.render('nuevaUnidad',{elCurso, error_registro_unidad:""});
+}
 });
 //////////////////////////////
 
-router.put('/nuevaUnidad/:_id',isAuthenticated,async (req,res)=> {
-const {nombre,descripcion}=req.body;
-console.log(req.params._id);
+router.post('/nuevaUnidad',isAuthenticated,async (req,res)=> {
+const {_id,nombre,descripcion}=req.body;
 if(nombre.length==0 || descripcion.length==0){
-  req.flash('error_registro',"Faltan datos de la unidad");
-    res.redirect('/units/nuevaUnidad/5f0e6cff6f92eb0d241aa619');
-    console.log("Faltan datos");
-}/*else {
-  const elCurso=await cursos.findOne({nombre:nombre});
-  if(elCurso){
-    req.flash('error_registro',"Nombre de curso ya existe");
-    res.redirect('/courses/nuevoCurso');
-  }else{
-    //fecha
-    var dat = new Date();
-    var mes =(parseInt(dat.getMonth()))+1;
-    let fecha = dat.getDate()+"-"+mes+"-"+dat.getFullYear();
-    ///
-
-  const creador=await usuarios.findById(req.user.id);
-  const nombreCreador=creador.nombre;
-  const nuevoCurso=new cursos({nombre,fecha,descripcion});
-
-  nuevoCurso.creador=nombreCreador;
-  nuevoCurso.user=req.user.id;
-  //console.log(nuevoCurso);
-  await nuevoCurso.save();
-  req.flash('ok_registro',"Curso registrado correctamente");
-  res.redirect('/courses/nuevoCurso');
-
-}//else
-
-}//else main
-*/
+res.redirect('/units/nuevaUnidad/'+_id+'/2');
+}
 
 });
 
