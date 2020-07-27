@@ -2,6 +2,7 @@ const router = require('express').Router();
 const express = require('express');
 const usuarios=require('../models/usuarios');
 const cursos=require('../models/cursos');
+const unidades=require('../models/unidades');
 const passport=require('passport');
 const {isAuthenticated} = require('../helpers/auth');
 
@@ -24,8 +25,13 @@ const {_id,nombre,descripcion}=req.body;
 if(nombre.length==0 || descripcion.length==0){
 res.redirect('/units/nuevaUnidad/'+_id+'/2');
 }else{
-  const cant=await cursos.findById(_id).count();
-  console.log(cant);
+  const cant=await unidades.findById(_id).count();
+  const orden= cant+1;
+  const nuevaUnidad=new unidades({idCurso:_id,nombre,descripcion,orden});
+  //console.log(nuevaUnidad);
+  await nuevaUnidad.save();
+  req.flash('ok_registro',nuevaUnidad.nombre);
+  res.redirect('/units/nuevaUnidad/'+_id+'/1');
 }
 
 });

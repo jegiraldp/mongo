@@ -19,16 +19,20 @@
         <div><br/></div>
     <div class="card">
       <div class="jumbotron" style="background-color: white">
-        <b>Curso:</b> <%=rta.nombre %>&nbsp;&nbsp;
-        (Fecha: <i><%=rta.fecha %></i>)<br/>
-        <b>Creado por:</b> <%=rta.creador %>
+        <b>Curso:</b> <%=rta.nombre %><br/>
+        <b>Descripción:</b> <%=rta.descripcion%><br/>
+        <b>Creado por:</b> <%=rta.creador %>-(<i><%=rta.fecha %></i>)<br/>
+
+
         <% if (user) { %>
                 <hr style="width:45%;text-align:left;margin-left:0">
+        <img src="/img/add.png">
         <a href="/units/nuevaUnidad/<%= rta._id %>/1">
-              <img src="/img/add.png">&nbsp;Nueva unidad</a>
+              Nueva unidad</a>
           <a>|</a>
+            <img src="/img/add.png">
             <a href="/courses/cursosMain">
-              <img src="/img/add.png">&nbsp;Nuevo tema</a>
+            Nuevo tema</a>
         <% } %>
         <br/><hr style="width:45%;text-align:left;margin-left:0">
         <b>Unidades:</b>
