@@ -23,6 +23,9 @@ router.post('/nuevaUnidad',isAuthenticated,async (req,res)=> {
 const {_id,nombre,descripcion}=req.body;
 if(nombre.length==0 || descripcion.length==0){
 res.redirect('/units/nuevaUnidad/'+_id+'/2');
+}else{
+  const cant=await cursos.findById(_id).count();
+  console.log(cant);
 }
 
 });

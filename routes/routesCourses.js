@@ -16,6 +16,12 @@ router.get('/cursos',async (req,res)=> {
   const rta=await cursos.find();
   res.render('cursos',{rta:rta});
 });
+
+////////////////////////
+router.get('/todosCursos',async (req,res)=> {
+  const rta=await cursos.find();
+  res.render('todosCursos',{rta:rta});
+});
 //////////////////////////////
 router.get('/cursosMain',isAuthenticated,async (req,res)=> {
   res.render('cursosMain',{});
