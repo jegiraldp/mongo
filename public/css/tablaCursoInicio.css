@@ -7,7 +7,7 @@ table#tablaInicio{
 
 table#tablaInicio tr.losTH{
 	text-align:left;
-	color:darkblue;
+	color:darkorange;
 }
 
 tr.contenido td, tr th{

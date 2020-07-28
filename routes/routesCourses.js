@@ -14,7 +14,7 @@ router.get('/menuCursos',(req,res)=> {
 });
 //////////////////////////////
 router.get('/cursos',async (req,res)=> {
-  const rta=await cursos.find();
+  const rta=await cursos.find().sort({nombre:1});
   res.render('cursos',{rta:rta});
 });
 

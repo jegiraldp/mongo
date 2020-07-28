@@ -47,7 +47,7 @@
           </div>
         <% }else {%>
 
-            <h4 class="card-title">Cursos en OpenTopic</h4><br/>
+          <!--  <h4 class="card-title">Cursos en OpenTopic</h4><br/>-->
 
         <table id="tablaInicio">
           <tr class="losTH">
@@ -58,7 +58,7 @@
           <tr class="curso">
 
             <td id="nombre">
-              <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %></a>
+              <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %> -- (<%= text.creador %>)</a>
             </td>
             <td>
 

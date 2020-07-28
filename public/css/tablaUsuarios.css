@@ -7,7 +7,7 @@ table#tablaInicio{
 
 table#tablaInicio tr.losTH{
 	text-align:left;
-//	color:red;
+	color:darkorange;
 }
 
 tr.curso td, tr th{

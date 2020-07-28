@@ -20,8 +20,7 @@
         <div><br/></div>
     <div class="card">
       <div class="jumbotron" style="background-color: white">
-        <b><%=rta.nombre %></b>
-        <br/>
+        <h4 class="card-title"><%=rta.nombre %></h4>
         <b>Descripción:</b> <%=rta.descripcion%>
         (<i><%=rta.creador %>::<%=rta.fecha %></i>)
 <% if(user){%>
@@ -52,17 +51,25 @@
 
 
         <% if(!user){%>
-           <li class="list-group-item list-group-item-primary"><b>Contenido</b></li>
+          <br/>  <br/>
 
+          <table id="tablaInicio">
+            <tr class="losTH">
+            <th>Unidad</th><th>Descripción</th>
+            </tr>
           <% lasUnidades.forEach(function(u){%>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <b>Unidad <%=u.orden%>:</b> <%=u.nombre%> -
-                <b>Descripcion:</b> <%=u.descripcion%>
-                </li>
-            </ul>
-          <%});%>
+              <tr class="contenido">
 
+                <td><%=u.orden%>.<%=u.nombre%></td>
+
+                    <% if (u.descripcion.length>90) {%>
+                <td>  <%=u.descripcion.substring(0,90)%>...</td>
+                  <%}else{%>
+                    <td>  <%=u.descripcion%><td>
+                    <%}%>
+              </tr>
+          <%});%>
+        </table>
 
         <% } %>
         <%}%>
