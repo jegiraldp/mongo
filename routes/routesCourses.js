@@ -47,13 +47,12 @@ router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
 
 //////////////////////////////
 router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
-
 const {nombre,descripcion}=req.body;
 if(nombre.length==0 || descripcion.length==0){
   req.flash('error_registro',"Faltan datos del curso");
     res.redirect('/courses/nuevoCurso');
 }else {
-  const elCurso=await cursos.findOne({nombre:nombre});
+  const elCurso=await cursos.findOne({nombre:nombre,user:req.user.id});
   if(elCurso){
     req.flash('error_registro',"Nombre de curso ya existe");
     res.redirect('/courses/nuevoCurso');

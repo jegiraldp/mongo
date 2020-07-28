@@ -7,6 +7,7 @@
       <link rel="stylesheet" type="text/css" href="/css/index.css" />
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
       <link rel="stylesheet" type="text/css" href="/css/cursoInicio.css" />
+      <link rel="stylesheet" type="text/css" href="/css/tablaCursoInicio.css" />
 
   </head>
   <body>
@@ -19,29 +20,34 @@
         <div><br/></div>
     <div class="card">
       <div class="jumbotron" style="background-color: white">
-        <b>Curso:</b> <%=rta.nombre %><br/>
-        <b>Descripción:</b> <%=rta.descripcion%><br/>
-        <b>Creado por:</b> <%=rta.creador %>-(<i><%=rta.fecha %></i>)
-
-        <%if(user){%>
-        <br/><br/><b>Contenido:</b>
-          (<a href="/units/nuevaUnidad/<%= rta._id %>/1">Nueva unidad</a>)<br/><hr/>
-        <%}%>
-
-
+        <b><%=rta.nombre %></b>
+        <br/>
+        <b>Descripción:</b> <%=rta.descripcion%>
+        (<i><%=rta.creador %>::<%=rta.fecha %></i>)
 <% if(user){%>
-  <% lasUnidades.forEach(function(u){%>
+  <br/><br/>
+<table id="tablaInicio">
+    <tr class="losTH">
+      <th><%if(user){%>
+        <img src="/img/add.png" alt="Nuevo" />
+        <a href="/units/nuevaUnidad/<%= rta._id %>/1">Nueva unidad</a>
+      <%}%></th>
+      <th>Opciones</th>
+    </tr>
+    <% lasUnidades.forEach(function(u){%>
+      <tr class="contenido">
+        <td><b>(<%=u.orden%>):</b> <%=u.nombre%></td>
 
-      <b>Unidad <%=u.orden%>:</b> <%=u.nombre%><br/>
-      <b>Descripcion:</b> <%=u.descripcion%>  <br/> 
-        <a  href="/courses/cursosMain">Nuevo tema</a><a>&nbsp;|&nbsp;</a>
-        <a href="/units/editarUnidad/<%= u._id %>">Editar</a><a>&nbsp;|&nbsp;</a>
-          <a href="/units/editarUnidad/<%= u._id %>">Eliminar</a>
-       <hr/>
+        <td>    <img src="/img/editarCurso.png" alt="Editar">
+                <a href="/units/editarUnidad/<%= u._id %>">Editar</a>&nbsp;|&nbsp;
+                <img src="/img/delete.png" alt="Eliminar">
+                  <a href="/units/editarUnidad/<%= u._id %>">Eliminar</a>
+               </td>
 
+  </tr>
   <%});%>
 
-
+</table>
 <% } %>
 
 
