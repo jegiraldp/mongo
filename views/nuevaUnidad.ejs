@@ -42,11 +42,7 @@
           Nueva unidad: <b><%= elCurso.nombre %></b>
     </div>
       <%}%>
-
-
-
-
-          <br/><form action="/units/nuevaUnidad" method="POST">
+<br/><form action="/units/nuevaUnidad" method="POST">
             <input type="hidden" name="_id" value="<%= elCurso._id %>" size="30">
           <div class="form-group">
       <input type="text"  class="form-control" name="nombre"

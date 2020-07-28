@@ -14,8 +14,11 @@ router.get('/nuevaUnidad/:_id/:estado',isAuthenticated,async (req,res)=> {
   if(estado=="2"){
     res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Faltan datos de la unidad"});
   }else{
-
+    if(estado=="3"){
+  res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Nombre de unidad ya existe"});
+    }else{
   res.render('nuevaUnidad',{elCurso, error_registro_unidad:""});
+  }
 }
 });
 //////////////////////////////
@@ -25,14 +28,18 @@ const {_id,nombre,descripcion}=req.body;
 if(nombre.length==0 || descripcion.length==0){
 res.redirect('/units/nuevaUnidad/'+_id+'/2');
 }else{
-  const cant=await unidades.findById(_id).count();
-  const orden= cant+1;
+  const existeNombre=await unidades.findOne({nombre:nombre,idCurso:_id});
+  if(existeNombre){
+    res.redirect('/units/nuevaUnidad/'+_id+'/3');
+  }else{
+  const cant=await unidades.find({idCurso:_id}).countDocuments();
+  const orden= (cant+1);
   const nuevaUnidad=new unidades({idCurso:_id,nombre,descripcion,orden});
-  //console.log(nuevaUnidad);
   await nuevaUnidad.save();
   req.flash('ok_registro',nuevaUnidad.nombre);
   res.redirect('/units/nuevaUnidad/'+_id+'/1');
-}
+}//else existeNombre
+}//else vacio
 
 });
 

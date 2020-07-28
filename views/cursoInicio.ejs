@@ -21,22 +21,46 @@
       <div class="jumbotron" style="background-color: white">
         <b>Curso:</b> <%=rta.nombre %><br/>
         <b>Descripción:</b> <%=rta.descripcion%><br/>
-        <b>Creado por:</b> <%=rta.creador %>-(<i><%=rta.fecha %></i>)<br/>
+        <b>Creado por:</b> <%=rta.creador %>-(<i><%=rta.fecha %></i>)
+
+        <%if(user){%>
+        <br/><br/><b>Contenido:</b>
+          (<a href="/units/nuevaUnidad/<%= rta._id %>/1">Nueva unidad</a>)<br/><hr/>
+        <%}%>
 
 
-        <% if (user) { %>
-                <hr style="width:45%;text-align:left;margin-left:0">
-        <img src="/img/add.png">
-        <a href="/units/nuevaUnidad/<%= rta._id %>/1">
-              Nueva unidad</a>
-          <a>|</a>
-            <img src="/img/add.png">
-            <a href="/courses/cursosMain">
-            Nuevo tema</a>
+<% if(user){%>
+  <% lasUnidades.forEach(function(u){%>
+
+      <b>Unidad <%=u.orden%>:</b> <%=u.nombre%><br/>
+      <b>Descripcion:</b> <%=u.descripcion%>  <br/> 
+        <a  href="/courses/cursosMain">Nuevo tema</a><a>&nbsp;|&nbsp;</a>
+        <a href="/units/editarUnidad/<%= u._id %>">Editar</a><a>&nbsp;|&nbsp;</a>
+          <a href="/units/editarUnidad/<%= u._id %>">Eliminar</a>
+       <hr/>
+
+  <%});%>
+
+
+<% } %>
+
+
+        <% if(!user){%>
+           <li class="list-group-item list-group-item-primary"><b>Contenido</b></li>
+
+          <% lasUnidades.forEach(function(u){%>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <b>Unidad <%=u.orden%>:</b> <%=u.nombre%> -
+                <b>Descripcion:</b> <%=u.descripcion%>
+                </li>
+            </ul>
+          <%});%>
+
+
         <% } %>
-        <br/><hr style="width:45%;text-align:left;margin-left:0">
-        <b>Unidades:</b>
-      <% } %>
+        <%}%>
+
 
   </div>
 
