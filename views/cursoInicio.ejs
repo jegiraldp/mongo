@@ -37,16 +37,18 @@
       </div>
         <%}%>
         <h5 class="card-title"><b>Unidades</b> - <%=rta.nombre %></h5>
-        <b>Descripción:</b> <%=rta.descripcion%>
-        (<i><%=rta.creador %>::<%=rta.fecha %></i>)
+
+        <%=rta.descripcion%>
+        (<i><%=rta.creador %>::<%=rta.fecha %></i>)<br/>
+        <%if(user){%>
+          <img src="/img/add.png" alt="Nuevo" />
+          <a href="/units/nuevaUnidad/<%= rta._id %>/1">Nueva unidad</a>
+        <%}%>
 <% if(user){%>
   <br/><br/>
 <table id="tablaInicio">
     <tr class="losTH">
-      <th><%if(user){%>
-        <img src="/img/add.png" alt="Nuevo" />
-        <a href="/units/nuevaUnidad/<%= rta._id %>/1">Nueva unidad</a>
-      <%}%></th>
+      <th>Unidad</th>
       <th>Opciones</th>
     </tr>
     <% lasUnidades.forEach(function(u){%>
