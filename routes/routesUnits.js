@@ -7,7 +7,7 @@ const passport=require('passport');
 const {isAuthenticated} = require('../helpers/auth');
 
 //////////////////////////////
-//usuarios//////////////////////////////
+////////////////////////////////
 router.get('/nuevaUnidad/:_id/:estado',isAuthenticated,async (req,res)=> {
   const elCurso=await cursos.findById(req.params._id);
   const estado=req.params.estado;
@@ -43,5 +43,31 @@ res.redirect('/units/nuevaUnidad/'+_id+'/2');
 
 });
 
-/////////
+//////////////////////////////
+router.get('/editarUnidad/:_id',isAuthenticated,async(req,res)=> {
+  const rta=await unidades.findById(req.params._id);
+  res.render('editarUnidad', {rta:rta,informacion:rta.nombre});
+});
+//////////////////////////////
+router.put('/editarUnidad/:_id',isAuthenticated,async(req,res)=> {
+  const {nombre,descripcion}= req.body;
+  const rtaU=await unidades.findById(req.params._id);
+  await unidades.findByIdAndUpdate(req.params._id,{nombre, descripcion});
+  req.flash('ok_editarUnidad',nombre);
+  res.redirect('/courses/inicioCurso/'+rtaU.idCurso);
+
+});
+
+//////////////////////////////
+router.delete('/deleteUnidad/:_id',isAuthenticated,async(req,res)=> {
+const rta=await unidades.findById(req.params._id);
+await unidades.findByIdAndDelete(req.params._id);
+req.flash('ok_registro',"Unidad "+rta.nombre+" eliminada correctamente");
+  res.redirect('/courses/inicioCurso/'+rta.idCurso);
+
+});
+
+//////////////////////////////
+
+//////////////////////////////
 module.exports=router;

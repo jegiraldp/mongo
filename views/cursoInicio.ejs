@@ -20,7 +20,23 @@
         <div><br/></div>
     <div class="card">
       <div class="jumbotron" style="background-color: white">
-        <h4 class="card-title"><%=rta.nombre %></h4>
+        <% if(ok_registro.length>0) {%>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <%= ok_registro %>
+      </div>
+        <%}%>
+        <% if(ok_editarUnidad.length>0) {%>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            Unidad <b><%= ok_editarUnidad %></b> editada correctamente.
+      </div>
+        <%}%>
+        <h5 class="card-title"><b>Unidades</b> - <%=rta.nombre %></h5>
         <b>Descripción:</b> <%=rta.descripcion%>
         (<i><%=rta.creador %>::<%=rta.fecha %></i>)
 <% if(user){%>
@@ -35,12 +51,49 @@
     </tr>
     <% lasUnidades.forEach(function(u){%>
       <tr class="contenido">
-        <td><b>(<%=u.orden%>):</b> <%=u.nombre%></td>
+        <td>
+          <img src="/img/up.png" alt="Editar">
+          <img src="/img/down.png" alt="Editar">
+          <b><%=u.orden%>.</b> <%=u.nombre%></td>
 
-        <td>    <img src="/img/editarCurso.png" alt="Editar">
-                <a href="/units/editarUnidad/<%= u._id %>">Editar</a>&nbsp;|&nbsp;
-                <img src="/img/delete.png" alt="Eliminar">
-                  <a href="/units/editarUnidad/<%= u._id %>">Eliminar</a>
+        <td>
+
+          <img src="/img/editarCurso.png" alt="Editar">
+                <a href="/units/editarUnidad/<%= u._id %>">Editar</a>&nbsp;&nbsp;
+
+              <!--////////////////
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal<%= u._id %>" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalLabel">
+              <div class="modal-dialog" role="document">
+              <div class="modal-content">
+              <div class="modal-header">
+              <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              ¿Confirma eliminar: <b><%= u.nombre %></b>?
+              </div>
+              <div class="modal-footer">
+                <form class="" action="/units/deleteUnidad/<%= u._id %>?_method=DELETE" method="post">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
+              </form>
+              </div>
+              </div>
+              </div>
+              </div>
+              <!--////////////////-->
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-link"
+              data-toggle="modal" data-target="#exampleModal<%= u._id %>"
+              aria-hidden="true">
+              <img src="/img/delete.png" alt="Eliminar curso">Eliminar
+              </button>
+
                </td>
 
   </tr>
@@ -79,5 +132,10 @@
 
 </div>
   <div id="pie"><%- include ('partials/footer.ejs') %></div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
   </body>
 </html>
