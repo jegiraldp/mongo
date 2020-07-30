@@ -38,7 +38,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          Nueva unidad: <b><%= elCurso.nombre %></b>
+          <%= elCurso.nombre %>&nbsp;&gt;&nbsp;<b>Nueva unidad</b>
     </div>
       <%}%>
 <br/><form action="/units/nuevaUnidad" method="POST">
@@ -49,7 +49,7 @@
       <small id="emailHelp" class="form-text text-muted">Título de la unidad</small>
     </div>
     <div class="form-group">
-      <textarea rows="5" cols="55"  class="form-control" name="descripcion"
+      <textarea rows="4" cols="55"  class="form-control" name="descripcion"
       autofocus placeholder="Descripción breve"></textarea>
       <small id="emailHelp" class="form-text text-muted">Descripción breve de la unidad</small>
     </div>
