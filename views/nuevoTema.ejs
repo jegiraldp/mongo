@@ -15,26 +15,22 @@
 <div class="container">
 <div><br/></div>
     <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
-      <a href="#"><img src="/img/back.png">Regresar</a>
-      <hr style="width:20%;text-align:left;margin-left:0">
+      <a href="/units/inicioUnidad/<%= laUnidad._id %>/<%= laUnidad.idCurso %>"><img src="/img/back.png">Regresar</a>
+<hr style="width:20%;text-align:left;margin-left:0">
+
      <% if (user) { %>
-      <% if(error_registro_unidad) {%>
+      <% if(error_registro_tema) {%>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          ¡<b><%= error_registro_unidad %></b>!
+          ¡<b><%= error_registro_tema %></b>!
     </div>
       <%}%>
-      <% if(ok_registro.length>0) {%>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          Se ha creado correctamente la unidad <b><%= ok_registro %></b>
-    </div>
-      <%}%>
+
+
       <% if(elCurso) {%>
+
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -42,15 +38,15 @@
           <%= elCurso.nombre %>&nbsp;&gt;&nbsp;<%= laUnidad.nombre %>&nbsp;&gt;&nbsp;<b>Nuevo tema</b>
     </div>
       <%}%>
-<br/><form action="/units/nuevaUnidad" method="POST">
-            <input type="hidden" name="_id" value="<%= elCurso._id %>" size="30">
+<br/><form action="/topics/nuevoTema" method="POST">
+            <input type="hidden" name="idUnidad" value="<%= laUnidad._id %>" size="30">
           <div class="form-group">
       <input type="text"  class="form-control" name="nombre"
-      autofocus placeholder="Título de la unidad" aria-describedby="emailHelp" />
+      autofocus placeholder="Título del tema" aria-describedby="emailHelp" />
       <small id="emailHelp" class="form-text text-muted">Título del tema</small>
     </div>
     <div class="form-group">
-      <textarea rows="5" cols="55"  class="form-control" name="descripcion"
+      <textarea rows="3" cols="55"  class="form-control" name="descripcion"
       autofocus placeholder="Escriba libremente utilizando el editor de texto"></textarea>
                       <script>CKEDITOR.replace( 'descripcion' );</script>
       <small id="emailHelp" class="form-text text-muted">Escriba libremente utilizando el editor de texto</small>

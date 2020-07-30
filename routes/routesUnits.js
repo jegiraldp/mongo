@@ -24,7 +24,7 @@ router.get('/nuevaUnidad/:_id/:estado',isAuthenticated,async (req,res)=> {
     res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Faltan datos de la unidad"});
   }else{
     if(estado=="3"){
-  res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Nombre de unidad ya existe"});
+  res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Título de unidad ya existe"});
     }else{
   res.render('nuevaUnidad',{elCurso, error_registro_unidad:""});
   }

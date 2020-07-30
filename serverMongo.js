@@ -43,6 +43,7 @@ app.use((req,res,next)=>{
   res.locals.success_msg=req.flash('success_msg');
   res.locals.ok_registro=req.flash('ok_registro');
   res.locals.ok_registro_unidad=req.flash('ok_registro_unidad');
+  res.locals.ok_registro_tema=req.flash('ok_registro_tema');
   res.locals.ok_editarCurso=req.flash('ok_editarCurso');
   res.locals.ok_editarUnidad=req.flash('ok_editarUnidad');
   res.locals.error_msg=req.flash('error_msg');
@@ -59,7 +60,7 @@ app.use('/main',mainRoutes);
 app.use('/courses',mainCourses);
 app.use('/users',mainUsers);
 app.use('/units',mainUnits);
-app.use('/units',mainTopics);
+app.use('/topics',mainTopics);
 //
 app.set('trust proxy', 1) // trust first proxy
 ///////////////
