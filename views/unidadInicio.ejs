@@ -15,7 +15,7 @@
       <div><%- include ('partials/navigation.ejs') %></div>
 
       <%}%>
-    <% if (rta) { %>
+    <% if (rtaCurso) { %>
 
   <div><%- include ('partials/navigationUsuarios.ejs') %></div>
 <!--//////////////////-->
@@ -43,8 +43,8 @@
     <a class="nav-link">|</a>
   </li>
   <li class="nav-item">
-<a class="nav-link" href="/units/nuevaUnidad/<%= rta._id %>/1">
-  <img src="/img/add.png" alt="Nuevo" />&nbsp;Nueva unidad</a>
+<a class="nav-link" href="/units/nuevoTema/<%= rtaUnidad._id %>/1">
+  <img src="/img/add.png" alt="Nuevo" />&nbsp;Nuevo Tema</a>
   </li>
   </ul>
 </div>
@@ -55,6 +55,8 @@
           <div class="container">
     <div class="card">
       <div class="jumbotron" style="background-color: white">
+        <a href="/courses/inicioCurso/<%= rtaCurso._id %>"><img src="/img/back.png">Regresar</a>
+        <hr style="width:20%;text-align:left;margin-left:0">
         <% if(ok_registro.length>0) {%>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -79,67 +81,20 @@
             Unidad <b><%= ok_editarUnidad %></b> editada correctamente.
       </div>
         <%}%>
-        <h5 class="card-title"><b><%=rta.nombre %></b> &gt; Unidades </h5>
+        <h6 class="card-title"><b><%=rtaCurso.nombre %></b> &gt; <b><%=rtaUnidad.nombre%></b> &gt; Temas</h6>
+        <%=rtaUnidad.descripcion%>
 
-        <%=rta.descripcion%><br/>
-        (<i><%=rta.creador %>::<%=rta.fecha %></i>)
 
 <% if(user){%>
   <br/><br/>
 <table id="tablaInicio">
     <tr class="losTH">
-      <th>Unidad</th>
+      <th>Tema</th>
       <th>Opciones</th>
     </tr>
-    <% lasUnidades.forEach(function(u){%>
-      <tr class="contenido">
-        <td>
-          <img src="/img/up.png" alt="Editar">
-          <img src="/img/down.png" alt="Editar">
-          <a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b><%=u.orden%>.</b><%=u.nombre%></a></td>
-
-        <td>
-
-          <img src="/img/editarCurso.png" alt="Editar">
-          <a href="/units/editarUnidad/<%= u._id %>">Editar</a>&nbsp;&nbsp;
-
-              <!--////////////////
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal<%= u._id %>" tabindex="-1" role="dialog"
-              aria-labelledby="exampleModalLabel">
-              <div class="modal-dialog" role="document">
-              <div class="modal-content">
-              <div class="modal-header">
-              <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-              </div>
-              <div class="modal-body">
-              ¿Confirma eliminar: <b><%= u.nombre %></b>?
-              </div>
-              <div class="modal-footer">
-                <form class="" action="/units/deleteUnidad/<%= u._id %>?_method=DELETE" method="post">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
-              </form>
-              </div>
-              </div>
-              </div>
-              </div>
-              <!--////////////////-->
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-link"
-              data-toggle="modal" data-target="#exampleModal<%= u._id %>"
-              aria-hidden="true">
-              <img src="/img/delete.png" alt="Eliminar curso">&nbsp;Eliminar
-              </button>
-
-               </td>
 
   </tr>
-  <%});%>
+
 
 </table>
 <% } %>
@@ -150,18 +105,7 @@
             <tr class="losTH">
             <th>Unidad</th><th>Descripción</th>
             </tr>
-          <% lasUnidades.forEach(function(u){%>
-              <tr class="contenido">
 
-                <td><a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b><%=u.orden%>.</b><%=u.nombre%></a></td>
-
-                    <% if (u.descripcion.length>90) {%>
-                <td>  <%=u.descripcion.substring(0,90)%>...</td>
-                  <%}else{%>
-                    <td>  <%=u.descripcion%><td>
-                    <%}%>
-              </tr>
-          <%});%>
         </table>
 
         <% } %>

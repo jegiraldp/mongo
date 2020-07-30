@@ -71,8 +71,9 @@ if(nombre.length==0 || descripcion.length==0){
   nuevoCurso.user=req.user.id;
   //console.log(nuevoCurso);
   await nuevoCurso.save();
+  const rta=await cursos.findById(req.params._id);
   req.flash('ok_registro',"Curso registrado correctamente");
-  res.redirect('/courses/nuevoCurso');
+  res.redirect('/courses/misCursos');
 
 }//else
 
