@@ -2,6 +2,7 @@ const router = require('express').Router();
 const express = require('express');
 const usuarios=require('../models/usuarios');
 const cursos=require('../models/cursos');
+const temas=require('../models/temas');
 const unidades=require('../models/unidades');
 const passport=require('passport');
 const {isAuthenticated} = require('../helpers/auth');
@@ -11,9 +12,10 @@ const {isAuthenticated} = require('../helpers/auth');
 router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
   const rtaUnidad=await unidades.findById(req.params._id);
   const rtaCurso=await cursos.findById(req.params.idCurso);
-  //const lasUnidades=await unidades.find({idCurso:rta._id}).sort({orden:1});
-  //console.log(lasUnidades);
-  res.render('unidadInicio',{rtaUnidad,rtaCurso});
+  //const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
+  const losTemas=await temas.find({idUnidad:rtaUnidad._id});
+  
+  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas});
 });
 //////////////////////////////
 ////////////////////////////////
