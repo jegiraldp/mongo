@@ -88,7 +88,7 @@
   <br/><br/>
 <table id="tablaInicio">
     <tr class="losTH">
-      <th>Unidad</th>
+      <th>Unidades del curso</th>
       <th>Opciones</th>
     </tr>
     <% lasUnidades.forEach(function(u){%>
@@ -148,12 +148,13 @@
 
           <table id="tablaInicio">
             <tr class="losTH">
-            <th>Unidad</th><th>Descripción</th>
+            <th>Unidades del curso</th><th>Descripción</th>
             </tr>
           <% lasUnidades.forEach(function(u){%>
               <tr class="contenido">
 
-                <td><a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b><%=u.orden%>.</b><%=u.nombre%></a></td>
+                <td><a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>">
+                  <b><%=u.orden%>.</b><%=u.nombre%></a></td>
 
                     <% if (u.descripcion.length>90) {%>
                 <td>  <%=u.descripcion.substring(0,90)%>...</td>

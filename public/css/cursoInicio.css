@@ -7,3 +7,10 @@ div.jumbotron{
 hr.linea{
   border-top: 1px solid black;
 }
+
+span#descripcion{
+  color:darkblue;
+}
+span#unidadNombre{
+  	color:darkorange;
+}
