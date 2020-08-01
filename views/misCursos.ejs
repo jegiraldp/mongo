@@ -56,6 +56,7 @@
         <table id="tablaInicio">
           <tr class="losTH">
             <th>Nombre del curso</th>
+
             <th>Opciones</th>
           </tr>
       <%  rta.forEach(function(text){%>
@@ -63,7 +64,10 @@
 
             <td id="nombre">
               <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %></a>
+              <span id="fecha">(<b>Actualizado:</b><%=text.fecha %>)</span>
             </td>
+
+
             <td>
 
             <a href="/courses/editarCurso/<%= text._id %>">

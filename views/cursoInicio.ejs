@@ -79,13 +79,11 @@
             Unidad <b><%= ok_editarUnidad %></b> editada correctamente.
       </div>
         <%}%>
-        <h5 class="card-title"><b><%=rta.nombre %></b> &gt; Unidades </h5>
-
-        <%=rta.descripcion%><br/>
-        (<i><%=rta.creador %>::<%=rta.fecha %></i>)
+        <h5 class="card-title"><b><%=rta.nombre %></b> &gt; <b><span id="unidadNombre">Unidades</span></b></h5>
+        <span id="descripcion"><b>Descripción del curso:</b> <%=rta.descripcion%></span><br/>
 
 <% if(user){%>
-  <br/><br/>
+  <br/>
 <table id="tablaInicio">
     <tr class="losTH">
       <th>Unidades del curso</th>
@@ -144,8 +142,7 @@
 </table>
 <% } %>
         <% if(!user){%>
-          <br/>  <br/>
-
+          <br/>
           <table id="tablaInicio">
             <tr class="losTH">
             <th>Unidades del curso</th><th>Descripción</th>

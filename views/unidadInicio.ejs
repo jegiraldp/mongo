@@ -82,8 +82,8 @@
       </div>
         <%}%>
         <h6 class="card-title"><b><%=rtaCurso.nombre %></b> &gt;
-          <b><span id="unidadNombre"><%=rtaUnidad.nombre%></span></B></h6>
-        <span id="descripcion"><b>Descripción:</b> <%=rtaUnidad.descripcion%></span>
+          <b><span id="unidadNombre"><%=rtaUnidad.nombre%></span></b></h6>
+        <span id="descripcion"><b>Descripción de la unidad:</b> <%=rtaUnidad.descripcion%></span>
 
 
 <% if(user){%>
@@ -98,7 +98,7 @@
         <td>
           <img src="/img/up.png" alt="Editar">
           <img src="/img/down.png" alt="Editar">
-          <a href="#"><%= t.nombre %></a>
+          <a href="#"><%= t.orden %>. <%= t.nombre %></a>
         </td>
         <td>
           <img src="/img/editarCurso.png" alt="Editar">

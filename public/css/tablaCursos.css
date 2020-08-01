@@ -27,3 +27,7 @@ td#nombre:hover, tr.curso:hover{
 button.btn {
   font-size: 15px;
 }
+
+span#fecha{
+  font-size: 12px;
+}
