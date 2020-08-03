@@ -1,6 +1,6 @@
 div#navUsuarios, div#navCursos{
   //border-radius: 6px;
-  background-color:#f0f1f3;
+  background-color:#17a2b8;
   -webkit-border-radius: 5px 5px 0px 0px;
   color:black;
   font-family: "Courier New", Courier, monospace;
@@ -12,9 +12,20 @@ div#navCursos ul.nav li.nav-item:hover,
 div#navbarNav ul.navbar-nav li.nav-item:hover{
   -moz-border-radius:1em;
    -webkit-border-radius: 5px 5px 5px 5px;
-   background: #f9edbe;
+   //background: #f9edbe;
+
 }
 
 div#navbarNav{
   font-family: "Courier New", Courier, monospace;
+}
+
+div#navCursos ul.nav li.nav-item a.nav-link,
+div#navUsuarios ul.nav li.nav-item a.nav-link{
+  color:#f8f0d6;
+}
+
+div#navCursos ul.nav li.nav-item a.nav-link:hover,
+div#navUsuarios ul.nav li.nav-item a.nav-link:hover{
+  text-decoration: underline;
 }
