@@ -54,8 +54,22 @@ router.post('/nuevoTema',isAuthenticated,async (req,res)=> {
   }//else vacio
 });
 
+
 //////////////////////////////
+router.get('/editarTema/:_id',isAuthenticated,async(req,res)=> {
+  const rta=await temas.findById(req.params._id);
+  const rtaUnidad=await unidades.findById(rta.idUnidad);
+  res.render('editarTema', {rta,informacion:rta.nombre,rtaUnidad});
+});
 
+//////////////////////////////
+//////////////////////////////
+router.get('/inicioTema/:_id/:idUnidad',isAuthenticated,async (req,res)=> {
+  const rtaUnidad=await unidades.findById(req.params.idUnidad);
+  const rtaTema=await temas.findById(req.params._id);
+  //const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
 
+  res.render('temaInicio',{rtaUnidad,rtaTema});
+});
 //////////////////////////////
 module.exports=router;

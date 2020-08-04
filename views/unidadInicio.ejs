@@ -98,11 +98,11 @@
         <td>
           <img src="/img/up.png" alt="Editar">
           <img src="/img/down.png" alt="Editar">
-          <a href="#"><%= t.orden %>. <%= t.nombre %></a>
+          <a href="/topics/inicioTema/<%= t._id %>/<%= t.idUnidad %>"><%= t.orden %>. <%= t.nombre %></a>
         </td>
         <td>
           <img src="/img/editarCurso.png" alt="Editar">
-          <a href="#">Editar</a>&nbsp;&nbsp;
+          <a href="/topics/editarTema/<%= t._id %>">Editar</a>&nbsp;&nbsp;
           <img src="/img/delete.png" alt="Editar">
           <a href="#">Eliminar</a>&nbsp;&nbsp;
         </td>
@@ -115,14 +115,14 @@
         <table id="tablaInicio">
             <tr class="losTH">
               <th>Temas de la unidad
-                &nbsp;&nbsp;<img src="/img/eye.png" alt="Editar"><a href="#">Ver juntos</a>
+                &nbsp;&nbsp;<img src="/img/eye.png" alt="Editar"><a href="#">Ver todos</a>
               </th>
 
             </tr>
             <% losTemas.forEach(function(t){%>
             <tr class="contenido">
                 <td>
-                  <a href="#"><%= t.orden %>.<%= t.nombre %></a>
+                  <a href="/topics/temaInicio/<%= t._id %>"><%= t.orden %>.<%= t.nombre %></a>
                 </td>
 
             </tr>
