@@ -45,6 +45,7 @@ app.use((req,res,next)=>{
   res.locals.ok_registro_unidad=req.flash('ok_registro_unidad');
   res.locals.ok_editarCurso=req.flash('ok_editarCurso');
   res.locals.ok_editarUnidad=req.flash('ok_editarUnidad');
+  res.locals.ok_editarTema=req.flash('ok_editarTema');
   res.locals.error_msg=req.flash('error_msg');
   res.locals.error_registro=req.flash('error_registro');
   res.locals.error=req.flash('error');

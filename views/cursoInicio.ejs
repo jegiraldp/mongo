@@ -94,7 +94,7 @@
         <td>
           <img src="/img/up.png" alt="Editar">
           <img src="/img/down.png" alt="Editar">
-          <a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b><%=u.orden%>.</b><%=u.nombre%></a></td>
+          <a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
 
         <td>
 
@@ -151,7 +151,7 @@
               <tr class="contenido">
 
                 <td><a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>">
-                  <b><%=u.orden%>.</b><%=u.nombre%></a></td>
+                  <b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
 
                     <% if (u.descripcion.length>90) {%>
                 <td>  <%=u.descripcion.substring(0,90)%>...</td>

@@ -32,7 +32,8 @@
       <%}%>
 
 
-<br/><form action="/topics/nuevoTema" method="POST">
+<br/><form action="/topics/editarTema/<%= rta._id %>?_method=PUT" method="POST">
+  <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="idUnidad" value="<%= rta.idUnidad %>" size="30">
           <div class="form-group">
       <input type="text"  class="form-control" name="nombre" value="<%= rta.nombre %>"

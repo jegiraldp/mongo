@@ -64,21 +64,14 @@
             </button>
             <%= ok_registro %>
       </div>
-      <% if(ok_registro_unidad.length>0) {%>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          Se ha creado correctamente la unidad <b><%= ok_registro_unidad %></b>
-    </div>
-      <%}%>
+
         <%}%>
-        <% if(ok_editarUnidad.length>0) {%>
+        <% if(ok_editarTema.length>0) {%>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            Unidad <b><%= ok_editarUnidad %></b> editada correctamente.
+            Tema <b><%= ok_editarTema %></b> editado correctamente.
       </div>
         <%}%>
         <h6 class="card-title"><b><%=rtaCurso.nombre %></b> &gt;
@@ -98,14 +91,45 @@
         <td>
           <img src="/img/up.png" alt="Editar">
           <img src="/img/down.png" alt="Editar">
-          <a href="/topics/inicioTema/<%= t._id %>/<%= t.idUnidad %>"><%= t.orden %>. <%= t.nombre %></a>
+          <a href="/topics/inicioTema/<%= t._id %>/<%= t.idUnidad %>"><b>Tema <%= t.orden %>.</b> <%= t.nombre %></a>
         </td>
         <td>
           <img src="/img/editarCurso.png" alt="Editar">
           <a href="/topics/editarTema/<%= t._id %>">Editar</a>&nbsp;&nbsp;
-          <img src="/img/delete.png" alt="Editar">
-          <a href="#">Eliminar</a>&nbsp;&nbsp;
-        </td>
+          <!--////////////////
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal<%= t._id %>" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalLabel">
+          <div class="modal-dialog" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+          ¿Confirma eliminar: <b><%= t.nombre %></b>?
+          </div>
+          <div class="modal-footer">
+            <form class="" action="/topics/deleteTema/<%= t._id %>?_method=DELETE" method="post">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
+          </form>
+          </div>
+          </div>
+          </div>
+          </div>
+          <!--////////////////-->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-link"
+          data-toggle="modal" data-target="#exampleModal<%= t._id %>"
+          aria-hidden="true">
+          <img src="/img/delete.png" alt="Eliminar Tema">&nbsp;Eliminar
+          </button>
+
+           </td>
     </tr>
   <%});%>
 </table>
@@ -122,7 +146,7 @@
             <% losTemas.forEach(function(t){%>
             <tr class="contenido">
                 <td>
-                  <a href="/topics/temaInicio/<%= t._id %>"><%= t.orden %>.<%= t.nombre %></a>
+                  <a href="/topics/temaInicio/<%= t._id %>"><b>Tema <%= t.orden %>.</b><%= t.nombre %></a>
                 </td>
 
             </tr>

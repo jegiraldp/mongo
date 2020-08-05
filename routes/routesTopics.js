@@ -63,6 +63,15 @@ router.get('/editarTema/:_id',isAuthenticated,async(req,res)=> {
 });
 
 //////////////////////////////
+router.put('/editarTema/:_id',isAuthenticated,async(req,res)=> {
+  const {nombre,descripcion}= req.body;
+  const rtaTema=await temas.findById(req.params._id);
+  const rtaUnidad=await unidades.findById(rtaTema.idUnidad);
+  await temas.findByIdAndUpdate(req.params._id,{nombre, descripcion});
+  req.flash('ok_editarTema',nombre);
+  res.redirect('/units/inicioUnidad/'+rtaTema.idUnidad+'/'+rtaUnidad.idCurso);
+
+});
 //////////////////////////////
 router.get('/inicioTema/:_id/:idUnidad',isAuthenticated,async (req,res)=> {
   const rtaUnidad=await unidades.findById(req.params.idUnidad);
@@ -71,5 +80,16 @@ router.get('/inicioTema/:_id/:idUnidad',isAuthenticated,async (req,res)=> {
 
   res.render('temaInicio',{rtaUnidad,rtaTema});
 });
+//////////////////////////////
+router.delete('/deleteTema/:_id',isAuthenticated,async(req,res)=> {
+const rta=await temas.findById(req.params._id);
+const rtaUnidad= await unidades.findById(rta.idUnidad);
+
+await temas.findByIdAndDelete(req.params._id);
+req.flash('ok_registro',"Tema "+rta.nombre+" eliminado correctamente");
+  res.redirect('/units/inicioUnidad/'+rta.idUnidad+'/'+rtaUnidad.idCurso);
+
+});
+
 //////////////////////////////
 module.exports=router;
