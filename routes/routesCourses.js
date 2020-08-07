@@ -35,9 +35,12 @@ router.get('/misCursos',async (req,res)=> {
 });
 //////////////////////////////
 router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
+  const contador=0;
   const rta=await cursos.findById(req.params._id);
   const lasUnidades=await unidades.find({idCurso:rta._id}).sort({orden:1});
-  //console.log(lasUnidades);
+  for (var i = 0; i < lasUnidades.length; i++) {
+    lasUnidades[i].orden=(i+1);
+  }
   res.render('cursoInicio',{rta,lasUnidades});
 });
 //////////////////////////////

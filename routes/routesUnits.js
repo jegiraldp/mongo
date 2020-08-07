@@ -12,9 +12,11 @@ const {isAuthenticated} = require('../helpers/auth');
 router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
   const rtaUnidad=await unidades.findById(req.params._id);
   const rtaCurso=await cursos.findById(req.params.idCurso);
-  //const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
-  const losTemas=await temas.find({idUnidad:rtaUnidad._id});
-  
+  const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
+  for (var i = 0; i < losTemas.length; i++) {
+    losTemas[i].orden=(i+1);
+  }
+
   res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas});
 });
 //////////////////////////////
