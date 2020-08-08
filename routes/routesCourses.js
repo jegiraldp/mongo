@@ -41,7 +41,7 @@ router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
   for (var i = 0; i < lasUnidades.length; i++) {
     lasUnidades[i].orden=(i+1);
   }
-  res.render('cursoInicio',{rta,lasUnidades});
+  res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length});
 });
 //////////////////////////////
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {

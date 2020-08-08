@@ -17,7 +17,7 @@ router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
     losTemas[i].orden=(i+1);
   }
 
-  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas});
+  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
 });
 //////////////////////////////
 ////////////////////////////////

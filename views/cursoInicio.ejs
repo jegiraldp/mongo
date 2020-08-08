@@ -92,8 +92,17 @@
     <% lasUnidades.forEach(function(u){%>
       <tr class="contenido">
         <td>
+          <% if(u.orden!=1){%>
           <img src="/img/up.png" alt="Editar">
+          <%}else{%>
+            ..
+          <%}%>
+          <%if(u.orden!=cantidad){%>
           <img src="/img/down.png" alt="Editar">
+          <%}else{%>
+            ..
+          <%}%>
+
           <a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
 
         <td>
