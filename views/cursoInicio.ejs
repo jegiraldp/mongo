@@ -93,17 +93,20 @@
       <tr class="contenido">
         <td>
           <% if(u.orden!=1){%>
-          <img src="/img/up.png" alt="Editar">
+          <a href="/units/cambiarOrden/<%= u._id %>/<%= u.orden %>/1">
+          <img src="/img/up.png" alt="Editar"></a>
           <%}else{%>
             ..
           <%}%>
           <%if(u.orden!=cantidad){%>
-          <img src="/img/down.png" alt="Editar">
+            <a href="/units/cambiarOrden/<%= u._id %>/<%= u.orden %>/2">
+              <img src="/img/down.png" alt="Editar"></a>
           <%}else{%>
             ..
           <%}%>
 
-          <a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>"><b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
+          <a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>">
+            <b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
 
         <td>
 

@@ -33,12 +33,15 @@ router.get('/misCursos',async (req,res)=> {
   const rta=await cursos.find({user:req.user.id});
   res.render('misCursos',{rta});
 });
-//////////////////////////////
+
+///////////////////////////
 router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
   const contador=0;
   const rta=await cursos.findById(req.params._id);
   const lasUnidades=await unidades.find({idCurso:rta._id}).sort({orden:1});
   for (var i = 0; i < lasUnidades.length; i++) {
+    orden=(i+1);
+    await unidades.findByIdAndUpdate(lasUnidades[i]._id,{orden});
     lasUnidades[i].orden=(i+1);
   }
   res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length});

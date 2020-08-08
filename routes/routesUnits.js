@@ -20,6 +20,35 @@ router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
   res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
 });
 //////////////////////////////
+//////////////////////////////
+router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
+  const opcion=req.params.opcion;
+  const orden=req.params.orden;
+  const laUnidad = await unidades.findById(req.params._id);
+  const elCursoId=laUnidad.idCurso;
+  if(opcion=="1"){
+
+  const ordenMas=1+parseInt(orden);
+  const ordenMenos=parseInt(orden)-1;
+  const anterior=await unidades.updateOne({idCurso:elCursoId,orden:ordenMenos},{$set:{orden:orden}});
+  await unidades.findByIdAndUpdate(req.params._id,{orden:ordenMenos});
+  }//opcion
+  if(opcion=="2"){
+
+  const ordenMas=1+parseInt(orden);
+  const ordenMenos=parseInt(orden)-1;
+  const siguiente=await unidades.updateOne({idCurso:elCursoId,orden:ordenMas},{$set:{orden:orden}});
+  await unidades.findByIdAndUpdate(req.params._id,{orden:ordenMas});
+  }//opcion
+
+
+  const contador=0;
+  const rta=await cursos.findById(elCursoId);
+  const lasUnidades=await unidades.find({idCurso:elCursoId}).sort({orden:1});
+  res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length});
+
+});
+//////////////////////////////
 ////////////////////////////////
 router.get('/nuevaUnidad/:_id/:estado',isAuthenticated,async (req,res)=> {
   const elCurso=await cursos.findById(req.params._id);
