@@ -14,7 +14,9 @@ router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
   const rtaCurso=await cursos.findById(req.params.idCurso);
   const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
   for (var i = 0; i < losTemas.length; i++) {
-    losTemas[i].orden=(i+1);
+    orden=(i+1);
+    await temas.findByIdAndUpdate(losTemas[i]._id,{orden});
+    losTemas[i].orden=orden;
   }
 
   res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
@@ -30,14 +32,14 @@ router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
 
   const ordenMas=1+parseInt(orden);
   const ordenMenos=parseInt(orden)-1;
-  const anterior=await unidades.updateOne({idCurso:elCursoId,orden:ordenMenos},{$set:{orden:orden}});
+  await unidades.updateOne({idCurso:elCursoId,orden:ordenMenos},{$set:{orden:orden}});
   await unidades.findByIdAndUpdate(req.params._id,{orden:ordenMenos});
   }//opcion
   if(opcion=="2"){
 
   const ordenMas=1+parseInt(orden);
   const ordenMenos=parseInt(orden)-1;
-  const siguiente=await unidades.updateOne({idCurso:elCursoId,orden:ordenMas},{$set:{orden:orden}});
+  await unidades.updateOne({idCurso:elCursoId,orden:ordenMas},{$set:{orden:orden}});
   await unidades.findByIdAndUpdate(req.params._id,{orden:ordenMas});
   }//opcion
 

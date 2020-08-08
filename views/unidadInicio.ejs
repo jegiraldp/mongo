@@ -90,12 +90,14 @@
     <tr class="contenido">
         <td>
           <% if(t.orden!=1){%>
-          <img src="/img/up.png" alt="Editar">
+        <a href="/topics/cambiarOrden/<%= t._id %>/<%= t.orden %>/1">
+          <img src="/img/up.png" alt="Editar"></a>
           <%}else{%>
             ..
           <%}%>
           <%if(t.orden!=cantidad){%>
-          <img src="/img/down.png" alt="Editar">
+            <a href="/topics/cambiarOrden/<%= t._id %>/<%= t.orden %>/2">
+              <img src="/img/down.png" alt="Editar"></a>
           <%}else{%>
             ..
           <%}%>

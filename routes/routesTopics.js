@@ -91,5 +91,36 @@ req.flash('ok_registro',"Tema "+rta.nombre+" eliminado correctamente");
 
 });
 
+///////////////////////////////////
+router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
+  const opcion=req.params.opcion;
+  const orden=req.params.orden;
+  const elTema = await temas.findById(req.params._id);
+  const rtaUnidad = await unidades.findById(elTema.idUnidad);
+  const rtaCurso = await cursos.findById(rtaUnidad.idCurso);
+  const elCursoId=rtaUnidad.idCurso;
+
+  if(opcion=="1"){
+
+  const ordenMas=1+parseInt(orden);
+  const ordenMenos=parseInt(orden)-1;
+  await temas.updateOne({idUnidad:rtaUnidad._id,orden:ordenMenos},{$set:{orden:orden}});
+  await temas.findByIdAndUpdate(req.params._id,{orden:ordenMenos});
+  }//opcion
+  if(opcion=="2"){
+
+    const ordenMas=1+parseInt(orden);
+    const ordenMenos=parseInt(orden)-1;
+    await temas.updateOne({idUnidad:rtaUnidad._id,orden:ordenMas},{$set:{orden:orden}});
+    await temas.findByIdAndUpdate(req.params._id,{orden:ordenMas});
+  }//opcion
+
+
+  const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
+  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
+
+});
+//////////////////////////////
+
 //////////////////////////////
 module.exports=router;
