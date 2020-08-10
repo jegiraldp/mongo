@@ -76,9 +76,10 @@ router.put('/editarTema/:_id',isAuthenticated,async(req,res)=> {
 router.get('/inicioTema/:_id/:idUnidad',isAuthenticated,async (req,res)=> {
   const rtaUnidad=await unidades.findById(req.params.idUnidad);
   const rtaTema=await temas.findById(req.params._id);
+  const rtaCursoId=rtaUnidad.idCurso;
   //const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
 
-  res.render('temaInicio',{rtaUnidad,rtaTema});
+  res.render('temaInicio',{rtaUnidad,rtaTema,rtaCursoId});
 });
 //////////////////////////////
 router.delete('/deleteTema/:_id',isAuthenticated,async(req,res)=> {

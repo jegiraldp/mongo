@@ -156,7 +156,7 @@
             <% losTemas.forEach(function(t){%>
             <tr class="contenido">
                 <td>
-                  <a href="/topics/temaInicio/<%= t._id %>"><b>Tema <%= t.orden %>.</b><%= t.nombre %></a>
+                <a href="/topics/inicioTema/<%= t._id %>/<%= t.idUnidad %>"><b>Tema <%= t.orden %>.</b><%= t.nombre %></a>
                 </td>
 
             </tr>

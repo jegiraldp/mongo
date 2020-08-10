@@ -8,7 +8,7 @@ const {isAuthenticated} = require('../helpers/auth');
 
 //////////////////////////////
 router.get('/',(req,res)=> {
-  const rta='- Bienvenido - ';
+  const rta='- Notas de clase - ';
   res.render('index',{rta});
   //res.write('hola parcero');
   //res.end();

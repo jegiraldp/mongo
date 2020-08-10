@@ -7,7 +7,7 @@
       <link rel="stylesheet" type="text/css" href="/css/index.css" />
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
       <link rel="stylesheet" type="text/css" href="/css/temaInicio.css" />
-
+      <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
 
   </head>
   <body>
@@ -55,16 +55,27 @@
           <div class="container">
     <div class="card">
       <div class="jumbotron" style="background-color: white">
-        <a href="/units/inicioUnidad/<%= rtaUnidad._id %>"><img src="/img/back.png">Regresar</a>
+        <a href="/units/inicioUnidad/<%= rtaUnidad._id %>/<%=rtaCursoId%>"><img src="/img/back.png">Regresar</a>
         <hr style="width:20%;text-align:left;margin-left:0">
+          <h5><b>Tema:</b><span id="unidadNombre"><%=rtaTema.nombre%></span></h5>
 
-        <h6 class="card-title"><b><%=rtaUnidad.nombre %></b> &gt;
-          <b><span id="unidadNombre"><%=rtaTema.nombre%></span></b></h6>
-          <textarea [innerHTML]="<%= rtaTema.descripcion %>" id="descripcion"></textarea>
+        <textarea id="editor"><%=rtaTema.descripcion %></textarea>
+        <script>
+        ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                .then( editor => {
+                                        config.readOnly = true;
+                                      
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
 
+      </script>
 
+        </div>
 
-  </div>
 
 </div>
   <div id="pie"><%- include ('partials/footer.ejs') %></div>

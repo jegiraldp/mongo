@@ -1,4 +1,8 @@
 div#descripcion{
-
   background: #fff;
+}
+
+span#unidadNombre{
+  color:darkorange;
+  text-transform: uppercase;
 }
