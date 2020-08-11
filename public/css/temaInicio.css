@@ -6,3 +6,7 @@ span#unidadNombre{
   color:darkorange;
   text-transform: uppercase;
 }
+
+div.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred{
+  border: none;
+}
