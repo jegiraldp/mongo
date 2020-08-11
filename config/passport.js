@@ -1,6 +1,8 @@
 const passport = require('passport');
 const localStrategy=require('passport-local').Strategy;
 const usuarios=require('../models/usuarios');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys=require('./keys');
 
 passport.use(new localStrategy({
   usernameField:'email',
@@ -23,6 +25,16 @@ passport.use(new localStrategy({
 }
 
 ));
+
+passport.use(new GoogleStrategy({
+    clientID: keys.google.clientID,
+  clientSecret: keys.google.clientSecret,
+  callbackURL: "/auth/google/redirect"
+},  accessToken => {
+      console.log("access token: ", accessToken);
+    })
+    );
+
 
 passport.serializeUser((user, done)=>{
   done(null, user.id);

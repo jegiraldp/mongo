@@ -7,12 +7,10 @@ const {isAuthenticated} = require('../helpers/auth');
 
 
 //////////////////////////////
-router.get('/',(req,res)=> {
-  const rta='- Notas de clase - ';
-  res.render('index',{rta});
-  //res.write('hola parcero');
-  //res.end();
-});
+router.get('/',async (req,res)=> {
+  const rta=await cursos.find().sort({nombre:1});
+  res.render('cursos',{rta});
+  });
 //////////////////////////////
 router.get('/about',(req,res)=> {
   const rta='Acerca de';
@@ -45,6 +43,17 @@ router.post('/login',passport.authenticate('local',{
   failureRedirect:'/main/login',
   failureFlash:true,
 }));
+
+//////////////////////////////
+router.get('/registro',async (req,res)=> {
+  res.render('registro');
+  });
+//////////////////////////////
+//google
+router.get('/google',passport.authenticate('google', {
+   scope: ["profile", "email"]
+}));
+//////////////
 
 
 router.get('session',(req,res)=> {

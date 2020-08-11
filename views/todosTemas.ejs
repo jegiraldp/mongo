@@ -59,9 +59,7 @@
         <br/><br/>
             <% var variable=''; %>
             <% rtaTemas.forEach(function(t){%>
-              <% variable = variable +'--------------<h5><b>Tema:</b><span>'+t.nombre+'</span></h5>'+t.descripcion%>
-
-
+              <% variable = variable +'<h5><b>Tema:</b><span>'+t.nombre+'</span></h5>'+t.descripcion+'______________________________________'%>
               <%});%>
                 <textarea readonly id="editor"><%=variable%></textarea>
               <script>
@@ -80,7 +78,7 @@
         </div>
 
 
-</div>
+</div><a href="/units/inicioUnidad/<%= rtaUnidad._id %>/<%=rtaCursoId%>"><img src="/img/back.png">Regresar</a>
   <div id="pie"><%- include ('partials/footer.ejs') %></div></div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
