@@ -82,6 +82,16 @@ router.get('/inicioTema/:_id/:idUnidad',isAuthenticated,async (req,res)=> {
   res.render('temaInicio',{rtaUnidad,rtaTema,rtaCursoId});
 });
 //////////////////////////////
+//////////////////////////////
+router.get('/todosTemas/:idUnidad/:idCurso',isAuthenticated,async (req,res)=> {
+  const idUnidad=req.params.idUnidad;
+  const rtaUnidad=await unidades.findById(idUnidad);
+  const rtaTemas=await temas.find({idUnidad:idUnidad});
+  const rtaCursoId=rtaUnidad.idCurso;
+  
+  res.render('todosTemas',{rtaUnidad,rtaTemas,rtaCursoId});
+});
+//////////////////////////////
 router.delete('/deleteTema/:_id',isAuthenticated,async(req,res)=> {
 const rta=await temas.findById(req.params._id);
 const rtaUnidad= await unidades.findById(rta.idUnidad);
