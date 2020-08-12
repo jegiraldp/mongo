@@ -48,12 +48,12 @@ router.post('/login',passport.authenticate('local',{
 router.get('/registro',async (req,res)=> {
   res.render('registro');
   });
-//////////////////////////////
-//google
-router.get('/google',passport.authenticate('google', {
-   scope: ["profile", "email"]
-}));
-//////////////
+
+/*router.get('/google/redirect',(req,res)=>{
+  res.send('callbackURL');
+  //res.render('home.ejs');
+});*/
+/////////
 
 
 router.get('session',(req,res)=> {
