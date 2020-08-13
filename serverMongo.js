@@ -3,11 +3,11 @@ const mainRoutes=require('./routes/routes-main');
 const mainCourses=require('./routes/routesCourses');
 const mainUnits=require('./routes/routesUnits');
 const mainTopics=require('./routes/routesTopics');
-const mainAuth=require('./routes/auth-routes');
+
 const mainUsers=require('./routes/routesUsers');
 var methodOverride = require('method-override')
 
-var cookieParser = require('cookie-parser')
+var cookieSession = require('cookie-session')
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
@@ -22,6 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+
+app.use(cookieSession({
+  name: 'notas-clase',
+  keys: ['key1', 'key2']
+}))
 
 app.use(session({
   secret:'jorgegiraldo',
@@ -62,7 +67,7 @@ app.use('/courses',mainCourses);
 app.use('/users',mainUsers);
 app.use('/units',mainUnits);
 app.use('/topics',mainTopics);
-app.use('/auth',mainAuth);
+
 //
 app.set('trust proxy', 1) // trust first proxy
 ///////////////

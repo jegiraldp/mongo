@@ -22,6 +22,7 @@ router.get('/about',(req,res)=> {
 
 //////////////////////////////
 router.get('/logout',(req,res)=> {
+  req.session=null;
   req.logout();
   res.redirect('/courses/cursos');
   //res.render('index',{rta:'No logueado....'});
@@ -29,7 +30,9 @@ router.get('/logout',(req,res)=> {
 
 //////////////////////////////
 router.get('/inicio',(req,res)=> {
-  res.render('inicio');
+  const elUsuario=req.user;
+  console.log(elUsuario);
+  res.render('inicio',{elUsuario});
 });
 
 
@@ -44,6 +47,24 @@ router.post('/login',passport.authenticate('local',{
   failureFlash:true,
 }));
 
+/////////////////////////////
+//google
+router.get('/google',passport.authenticate('google', {
+   scope: ["profile", "email"]
+}));
+//////////////
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/main/login' }),
+  function(req, res) {
+
+    res.redirect('/main/inicio');
+  });
+
+//////////////
+router.get('/good',(req,res)=> {
+  const email=req.user.email;
+  res.send('Wellcome '+email);
+});
 //////////////////////////////
 router.get('/registro',async (req,res)=> {
   res.render('registro');

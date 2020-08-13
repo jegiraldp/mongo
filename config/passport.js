@@ -2,8 +2,8 @@ const passport = require('passport');
 const localStrategy=require('passport-local').Strategy;
 const usuarios=require('../models/usuarios');
 const users=require('../models/users');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys=require('./keys');
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 
 passport.use(new localStrategy({
   usernameField:'email',
@@ -13,7 +13,7 @@ passport.use(new localStrategy({
   if(!user) {
     return done(null,false,{message:'Usuario no autorizado'});
   }else{
-    //console.log(user);
+
     const match= await user.matchPassword(password);
     if(match){
 
@@ -28,21 +28,19 @@ passport.use(new localStrategy({
 ));
 
 passport.use(new GoogleStrategy({
-    clientID: keys.google.clientID,
-  clientSecret: keys.google.clientSecret,
-  callbackURL: "/auth/google/redirect"
-},  (accessToken,refreshToken,profile,done) => {
-    
-    })
-    );
+    clientID: '292857550726-q2goj4sn70uqpgbut3dsnlaocndkscbe.apps.googleusercontent.com',
+    clientSecret: 'Dimp_aPCCvL9xUsd1sTqOTOh',
+    callbackURL: "http://localhost:8080/main/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+       return done(null, profile);
+  }
+));
 
-
-passport.serializeUser((user, done)=>{
-  done(null, user.id);
+passport.serializeUser(function(user, done) {
+  done(null, user);
 });
 
-passport.deserializeUser((id, done)=>{
-  usuarios.findById(id, (err,user)=>{
-      done(err,user);
-  });
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
