@@ -8,12 +8,14 @@ const {isAuthenticated} = require('../helpers/auth');
 //////////////////////////////
 //usuarios//////////////////////////////
 router.get('/usuariosMain',async (req,res)=> {
-  res.render('usuariosMain',{});
+  const elUsuario=req.user;
+  res.render('usuariosMain',{elUsuario});
 });
 //////////////////////////////
 router.get('/usuarios',isAuthenticated,async (req,res)=> {
   const rta=await usuarios.find();
-  res.render('usuarios',{rta});
+  const elUsuario=req.user;
+  res.render('usuarios',{rta,elUsuario});
 });
 //////////////////////////////
 router.get('/nuevoUsuario',isAuthenticated,(req,res)=> {

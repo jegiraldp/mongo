@@ -25,13 +25,15 @@ router.get('/todosCursos',async (req,res)=> {
 });
 //////////////////////////////
 router.get('/cursosMain',isAuthenticated,async (req,res)=> {
-  res.render('cursosMain',{});
+    const elUsuario=req.user;
+  res.render('cursosMain',{elUsuario});
 });
 //////////////////////////////
 //////////////////////////////
 router.get('/misCursos',async (req,res)=> {
   const rta=await cursos.find({user:req.user.id});
-  res.render('misCursos',{rta});
+  const elUsuario=req.user;
+  res.render('misCursos',{rta,elUsuario});
 });
 
 ///////////////////////////
@@ -48,7 +50,8 @@ router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
 });
 //////////////////////////////
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
-  res.render('nuevoCurso',{rta:null});
+  const elUsuario=req.user;
+  res.render('nuevoCurso',{rta:null,elUsuario});
 });
 
 //////////////////////////////

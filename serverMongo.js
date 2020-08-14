@@ -7,9 +7,9 @@ const mainTopics=require('./routes/routesTopics');
 const mainUsers=require('./routes/routesUsers');
 var methodOverride = require('method-override')
 
-var cookieSession = require('cookie-session')
+const cookieSession = require('cookie-session')
 const bodyParser = require('body-parser');
-const session = require('express-session');
+//const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 
@@ -28,18 +28,24 @@ app.use(cookieSession({
   keys: ['key1', 'key2']
 }))
 
-app.use(session({
+const isLoggedIn = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.sendStatus(401);
+    }
+}
+
+/*app.use(session({
   secret:'jorgegiraldo',
   resave: false,
   saveUninitialized: false,
   //cookie: { secure: false }
-}));
+}));*/
 
 app.use(bodyParser.urlencoded({extended:false}));
 //app.use(cookieParser());
-
 app.use(express.static('public'));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

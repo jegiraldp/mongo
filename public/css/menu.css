@@ -15,13 +15,7 @@ div#navCursos ul.nav li.nav-item:hover{
 
 }
 
-div#navbarNav ul.navbar-nav li.nav-item:hover{
-  -moz-border-radius:1em;
-   -webkit-border-radius: 5px 5px 5px 5px;
-   background: #f5e9bf;
 
-
-}
 
 div#navbarNav{
   font-family: "Courier New", Courier, monospace;
@@ -36,4 +30,7 @@ img#fotoPerfil{
   border-radius: 50%;
   width: 25px;
   height: 25px;
+}
+li.nav-item.dropdown a.nav-link.dropdown-toggle#navbarDropdown:hover{
+  background: white;
 }

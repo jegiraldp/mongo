@@ -22,14 +22,15 @@ router.get('/about',(req,res)=> {
 
 //////////////////////////////
 router.get('/logout',(req,res)=> {
-  req.session=null;
+  //req.session=null;
   req.logout();
-  res.redirect('/courses/cursos');
-  //res.render('index',{rta:'No logueado....'});
+  res.redirect('https://mail.google.com/mail/u/0/?logout&hl=en');
+  //res.redirect('/courses/cursos');
+
 });
 
 //////////////////////////////
-router.get('/inicio',(req,res)=> {
+router.get('/inicio',isAuthenticated,(req,res)=> {
   const elUsuario=req.user;
   console.log(elUsuario);
   res.render('inicio',{elUsuario});
@@ -54,9 +55,8 @@ router.get('/google',passport.authenticate('google', {
 }));
 //////////////
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/main/login' }),
+  passport.authenticate('google', { failureRedirect: '/main' }),
   function(req, res) {
-
     res.redirect('/main/inicio');
   });
 
@@ -70,13 +70,7 @@ router.get('/registro',async (req,res)=> {
   res.render('registro');
   });
 
-/*router.get('/google/redirect',(req,res)=>{
-  res.send('callbackURL');
-  //res.render('home.ejs');
-});*/
-/////////
-
-
+/////////////////////////
 router.get('session',(req,res)=> {
   // Cookies that have not been signed
 console.log('Cookies: ', req.cookies)

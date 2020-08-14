@@ -8,16 +8,15 @@
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
   </head>
   <body>
-    <div><%- include ('partials/navigation.ejs') %></div>
+
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div class="container">
     <div class="card">
       <div class="jumbotron" style="background-color: white">
 
       <% if (elUsuario) { %>
-        <b>Bienvenido</b>
-          <i><%=elUsuario._json.name%> -- <%=elUsuario._json.email%> </i><br/>
-      
+        <b>Bienvenid@</b> : <b><%=elUsuario._json.name%></b><br/>
+
         <% } %>
       </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>
 
