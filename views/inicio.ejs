@@ -8,7 +8,7 @@
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
   </head>
   <body>
-
+    <div><%- include ('partials/navigation.ejs') %></div>
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div class="container">
     <div class="card">
@@ -17,7 +17,7 @@
       <% if (elUsuario) { %>
         <b>Bienvenido</b>
           <i><%=elUsuario._json.name%> -- <%=elUsuario._json.email%> </i><br/>
-          <img width="32" height="32" src="<%=elUsuario._json.picture%>" alt="">
+      
         <% } %>
       </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>
 

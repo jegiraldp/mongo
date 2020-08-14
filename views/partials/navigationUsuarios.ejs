@@ -19,14 +19,16 @@
         <li class="nav-item">
           <a class="nav-link" href="/main/logout"><img src="/img/exit.png">&nbsp;Salir</a>
         </li>
-
+              <% if (typeof elUsuario != "undefined") { %>
           <li>
             <a class="nav-link">|</a>
           </li>
           <li>
             <a class="nav-link" href="#">
-              <img src="/img/user.png">&nbsp;Usuario:<%= user.usuario %></a>
+              <img id="fotoPerfil" src="<%=elUsuario._json.picture%>" alt=""> <%=elUsuario._json.name%></a>
+
           </li>
+          <%}%>
       </ul>
 
 

@@ -31,3 +31,9 @@ div#navCursos ul.nav li.nav-item a.nav-link,
 div#navUsuarios ul.nav li.nav-item a.nav-link{
   color:white;
 }
+
+img#fotoPerfil{
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
