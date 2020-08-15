@@ -14,13 +14,7 @@
 <div><%- include ('partials/navigationUsuarios.ejs') %></div>
 <div><%- include ('partials/navigationGestionUsuarios.ejs') %></div>
 <div class="container">  <div><br/></div>
-      <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <b>Creando nuevo usuario</b>
-    </div>
+ <div class="card"><div class="jumbotron mt-0" style="background-color: white;">
       <% if(error_registro.length>0) {%></i>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -38,7 +32,14 @@
     </div>
       <%}%>
 
-       <% if (user) { %>
+       <% if (elUsuario) { %>
+
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+             <b>Creando nuevo usuario</b>
+       </div>
           <br/>  <form action="/users/nuevoUsuario" method="POST">
             <div class="form-group">
               <input type="text"  class="form-control" name="nombre" autofocus placeholder="Nombre completo" aria-describedby="emailHelp" />
@@ -61,7 +62,11 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        Usuario no autorizado
+        <img src="/img/alerta.png" alt="">
+        <b>¡Usuario no autorizado!</b>
+        <img src="/img/alerta.png" alt="">
+        <br><br>
+        <a href="/main"><img src="/img/home.png" alt=""> Ir a inicio</a>
   </div>
       <%}%>
 </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>

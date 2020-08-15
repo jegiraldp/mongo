@@ -19,9 +19,8 @@ router.get('/usuarios',isAuthenticated,async (req,res)=> {
 });
 //////////////////////////////
 router.get('/nuevoUsuario',isAuthenticated,(req,res)=> {
-  //const nn =req.session.mivariable;
-  //delete req.session.mivariable;
-  res.render('nuevoUsuario',{rta:null});
+  const elUsuario=req.user;
+  res.render('nuevoUsuario',{rta:null,elUsuario});
 });
 //////////////////////////////
 router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
