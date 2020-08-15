@@ -24,18 +24,21 @@ router.get('/nuevoUsuario',isAuthenticated,(req,res)=> {
 });
 //////////////////////////////
 router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
-  const {usuario,clave,nombre}=req.body;
-  if(usuario.length==0 || nombre.length==0 || clave.length==0){
+  const {nombre,correo}=req.body;
+
+  if(nombre.length==0 || correo.length==0){
     req.flash('error_registro',"Faltan datos del usuario");
       res.redirect('/users/nuevoUsuario');
   }else {
-  const el_usuario=await usuarios.findOne({usuario:usuario});
+  const username= correo.substring(0,correo.indexOf('@'));
+
+  const el_usuario=await usuarios.findOne({correo:correo});
   if(el_usuario){
-    req.flash('error_registro',"Nombre de usuario ya existe");
+    req.flash('error_registro',"Usuario ya existe");
     res.redirect('/users/nuevoUsuario');
   }else{
-  const nuevoUsuario=new usuarios({usuario,clave,nombre});
-  nuevoUsuario.clave=await nuevoUsuario.encryptPassword(clave);
+    //console.log(elUserName+"-"nombre+"-"+correo);
+  const nuevoUsuario=new usuarios({nombre,username,correo});
   await nuevoUsuario.save();
   req.flash('ok_registro',"Usuario registrado correctamente");
   res.redirect('/users/nuevoUsuario');

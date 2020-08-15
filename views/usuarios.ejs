@@ -10,6 +10,8 @@
   </head>
   <body>
 
+
+
     <div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div><%- include ('partials/navigationGestionUsuarios.ejs') %></div>
     <div><div class="container">  <div><br/></div>
@@ -23,18 +25,19 @@
     </div>
     <%}%>
                       <% if (rta && user) {%>
-                        <% if (user.usuario=='admin'){%>
-                          <h4 class="card-title">Usuarios en OpenTopic</h4><br/>
+                        <% if (elUsuario._json.sub=='113498746980831321020'){%>
+
                           <table id="tablaInicio">
                             <tr class="losTH">
-                              <th>Usuario</th><th>Nombre completo</th><th>Opciones</th>
+                              <th>Nombre completo</th><th>Correo</th><th>Opciones</th>
                             </tr>
 
                           <%  rta.forEach(function(text){%>
 
                             <tr class="curso">
-                              <td><%= text.usuario %></td>
                                 <td><%= text.nombre %></td>
+                              <td><%= text.correo %></td>
+
                                 <td>
 
                                 <a href="/users/editarUsuario/<%= text._id %>">
@@ -85,19 +88,29 @@
                           <%}else{%>
                         <table id="tablaInicio">
                           <tr class="losTH">
-                            <th>Usuario</th><th>Nombre completo</th>
+                            <th>Nombre completo</th><th>Correo</th>
                           </tr>
 
                         <%  rta.forEach(function(rta){%>
                           <tr class="curso">
-                            <td><%= rta.usuario %></td>
-                              <td><%= rta.nombre %></td>
+                            <td><%= rta.nombre %></td>
+                              <td><%= rta.correo %></td>
                           </tr>
 
                           <% }); %>
                         </table>
                         <%}%>
-                      <%}%>
+                        <% } else{%>
+                          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <img src="/img/alerta.png" alt="">
+                            <b>¡Usuario no autorizado!</b>
+                            <img src="/img/alerta.png" alt="">
+                            -- <a href="/main/home"> Ir a inicio</a>
+                          </div>
+                          <%}%>
 
 </div></div>
 <div id="pie"><%- include ('partials/footer.ejs') %></div></div>

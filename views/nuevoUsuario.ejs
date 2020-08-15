@@ -20,7 +20,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <%= error_registro %>
+          ¡<b><%= error_registro %></b>!
     </div>
       <%}%>
       <% if(ok_registro.length>0) {%>
@@ -42,18 +42,15 @@
        </div>
           <br/>  <form action="/users/nuevoUsuario" method="POST">
             <div class="form-group">
-              <input type="text"  class="form-control" name="nombre" autofocus placeholder="Nombre completo" aria-describedby="emailHelp" />
+              <input type="text"  class="form-control" name="nombre"
+              autofocus placeholder="Nombre completo" aria-describedby="emailHelp" />
               <small id="emailHelp" class="form-text text-muted">Nombre completo</small>
             </div>
       <div class="form-group">
-        <input type="text"  class="form-control" name="usuario" autofocus placeholder="Usuario" aria-describedby="emailHelp" />
-        <small id="emailHelp" class="form-text text-muted">Usuario</small>
+        <input type="email"  class="form-control" name="correo"
+        autofocus placeholder="Correo Electrónico" aria-describedby="emailHelp" />
+        <small id="emailHelp" class="form-text text-muted">Correo electrónico institucional @elpoli.edu.co</small>
       </div>
-
-      <div class="form-group">
-        <input type="password"  class="form-control" name="clave" value="" placeholder="Clave" aria-describedby="emailHelp" />
-        <small id="emailHelp" class="form-text text-muted">Clave</small>
-        </div>
         <input class="btn btn-primary" type="submit" name="boton" value="Registrar">
       </form>
 </div>
@@ -64,9 +61,7 @@
         </button>
         <img src="/img/alerta.png" alt="">
         <b>¡Usuario no autorizado!</b>
-        <img src="/img/alerta.png" alt="">
-        <br><br>
-        <a href="/main"><img src="/img/home.png" alt=""> Ir a inicio</a>
+        <img src="/img/alerta.png" alt=""> -- <a href="/main/home"> Ir a inicio</a>
   </div>
       <%}%>
 </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>

@@ -8,16 +8,41 @@
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
   </head>
   <body>
-
-    <div><%- include ('partials/navigationUsuarios.ejs') %></div>
     <div class="container">
+      <%if(elUsuario){%>
+  <% if (estado=="1") { %>
+    <div><%- include ('partials/navigationUsuarios.ejs') %></div>
+
     <div class="card">
       <div class="jumbotron" style="background-color: white">
 
-      <% if (elUsuario) { %>
+
         <b>Bienvenid@</b> : <b><%=elUsuario._json.name%></b><br/>
 
-        <% } %>
+        <% } else{%>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <img src="/img/alerta.png" alt="">¡Usuario <b><%=elUsuario._json.email%></b> no está registrado<br/>
+            <img src="/img/mail.png" alt="">Enviar correo electrónico a jegiraldo@elpoli.edu.co para ser registrado.<hr/>
+            <a href="/main/logout" target="_blank">NO OLVIDE CERRAR SESIÓN</a><br/><br/>
+            
+      </div>
+          <%}%>
+
+
+            <%}else{%>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <img src="/img/alerta.png" alt="">
+                <b>¡Usuario no autorizado!</b>
+                <img src="/img/back.png" alt=""> -- <a href="/main/home"> Ir a inicio</a>
+            </div>
+              <%}%>
+
       </div></div><div id="pie"><%- include ('partials/footer.ejs') %></div></div>
 
   </body>

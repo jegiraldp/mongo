@@ -19,7 +19,17 @@
 
       <% if (user) { %>
         <h4 class="card-title">Gestión de usuarios</h4>
-      <% } %>
+        <% } else{%>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <img src="/img/alerta.png" alt="">
+            <b>¡Usuario no autorizado!</b>
+            <img src="/img/alerta.png" alt="">
+            -- <a href="/main/home"> Ir a inicio</a>
+          </div>
+          <%}%>
       </div></div>
 <div id="pie"><%- include ('partials/footer.ejs') %></div></div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -19,8 +19,18 @@
       <div class="jumbotron" style="background-color: white">
 
       <% if (user) { %>
-        <h5 class="card-title">Gestión de cursos</h5>
-      <% } %>
+        <h4 class="card-title">Gestión de cursos</h4>
+        <% } else{%>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <img src="/img/alerta.png" alt="">
+            <b>¡Usuario no autorizado!</b>
+            <img src="/img/alerta.png" alt="">
+            -- <a href="/main"> Ir a inicio</a>
+          </div>
+          <%}%>
 
 
   </div>
