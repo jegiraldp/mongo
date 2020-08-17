@@ -22,12 +22,12 @@
           <h4 class="card-title">Notas de clase - APIT</h4><br/>
           <table id="tablaInicio">
             <tr class="losTH">
-              <th>Nombre del curso</th><th>Descripción</th><th>Creado por</th>
+              <th>Nombre del curso</th><th>Creado por</th>
             </tr>
         <%  rta.forEach(function(rta){%>
             <tr class="curso">
               <td   id="nombre"><a href="/courses/inicioCurso/<%= rta._id %>"><%= rta.nombre %></a></td>
-              <td><%= rta.descripcion %></td>
+
               <td><%= rta.creador %></td>
 
             </tr>

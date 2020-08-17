@@ -46,13 +46,7 @@
                 ¡<b>No hay cursos registrados</b>!
           </div>
         <% }else {%>
-              <% if (user.usuario=='admin') { %>
-            <h5 class="card-title">Cursos en OpenTopic</h5><br/>
-            <% } else {%>
-
             <h5 class="card-title">Mis cursos</h5>
-
-              <%}%>
         <table id="tablaInicio">
           <tr class="losTH">
             <th>Nombre del curso</th>
@@ -64,7 +58,7 @@
 
             <td id="nombre">
               <a href="/courses/inicioCurso/<%= text._id %>"><%= text.nombre %></a>
-              
+
             </td>
 
 
@@ -81,13 +75,17 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-            <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
+              <h6 class="modal-title" id="exampleModalLabel">
+                <img src="/img/alerta.png" alt="">
+                <b>ATENCIÓN</b> -- Confirmar eliminar
+                <img src="/img/alerta.png" alt="">
+              </h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-            ¿Confirma eliminar: <b><%= text.nombre %></b>?
+            Curso: <b><%= text.nombre %></b>
             </div>
             <div class="modal-footer">
               <form class="" action="/courses/deleteCurso/<%= text._id %>?_method=DELETE" method="post">

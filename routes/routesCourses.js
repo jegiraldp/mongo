@@ -21,7 +21,8 @@ router.get('/cursos',async (req,res)=> {
 ////////////////////////
 router.get('/todosCursos',async (req,res)=> {
   const rta=await cursos.find();
-  res.render('todosCursos',{rta:rta});
+    const elUsuario=req.user;
+  res.render('todosCursos',{rta:rta,elUsuario});
 });
 //////////////////////////////
 router.get('/cursosMain',isAuthenticated,async (req,res)=> {
@@ -61,8 +62,8 @@ router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
 router.post('/nuevoCurso',isAuthenticated,async (req,res)=> {
 const elUsuario=req.user;
 const correo=elUsuario._json.email;
-const creador=elUsuario._json.name;
 const username= correo.substring(0,correo.indexOf('@'));
+const creador=await usuarios.findOne({username:username});
 const {nombre,descripcion}=req.body;
 if(nombre.length==0 || descripcion.length==0){
   req.flash('error_registro',"Faltan datos del curso");
@@ -78,8 +79,7 @@ if(nombre.length==0 || descripcion.length==0){
     var mes =(parseInt(dat.getMonth()))+1;
     let fecha = dat.getDate()+"-"+mes+"-"+dat.getFullYear();
 
-  const nuevoCurso=new cursos({nombre,fecha,descripcion,user:username,creador:creador});
-  //console.log(nuevoCurso);
+  const nuevoCurso=new cursos({nombre,fecha,descripcion,user:username,creador:creador.nombre});
   await nuevoCurso.save();
   req.flash('ok_registro',"Curso registrado correctamente");
   res.redirect('/courses/misCursos');
