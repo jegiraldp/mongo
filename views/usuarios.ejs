@@ -25,6 +25,13 @@
     </div>
     <%}%>
                       <% if (rta && user) {%>
+
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <b>Usuarios registrados</b>  (<%=cantidad%>)
+                    </div>
                         <% if (elUsuario._json.sub=='113498746980831321020'){%>
 
                           <table id="tablaInicio">
@@ -32,36 +39,36 @@
                               <th>Nombre completo</th><th>Correo</th><th>Opciones</th>
                             </tr>
 
-                          <%  rta.forEach(function(text){%>
+                          <%  rta.forEach(function(elUser){%>
 
                             <tr class="curso">
-                                <td><%= text.nombre %></td>
-                              <td><%= text.correo %></td>
-
+                                <td><%= elUser.nombre %></td>
+                              <td><%= elUser.correo %></td>
                                 <td>
-
-                                <a href="/users/editarUsuario/<%= text._id %>">
+                                <a href="/users/editarUsuario/<%= elUser._id %>">
                                 <img src="../img/editarCurso.png" alt="Editar curso">Editar
                               </a>&nbsp;&nbsp;
 
                                 <!--////////////////
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal<%= text.usuario %>" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel">
+                      <div class="modal fade" id="exampleModal<%= elUser.username %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                <h6 class="modal-title" id="exampleModalLabel">¡ Atención !</h6>
+                                <h6 class="modal-title" id="exampleModalLabel">
+                                  <img src="/img/alerta.png" alt="">
+                                  <b>ATENCIÓN</b> -- Confirmar eliminar
+                                  <img src="/img/alerta.png" alt="">
+                                </h6>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                ¿Confirma eliminar: <b><%= text.nombre %> - (<%= text.usuario %>)</b>?
-
+                                Usuario: <b><%= elUser.nombre %></b>
                                 </div>
                                 <div class="modal-footer">
-                                  <form class="" action="/users/deleteUsuario/<%= text._id %>?_method=DELETE" method="post">
+                                  <form class="" action="/users/deleteUsuario/<%= elUser._id %>?_method=DELETE" method="post">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                   <input type="hidden" name="_method" value="DELETE">
                                   <button type="submit" class="btn btn-primary">Confirmo eliminar</button>
@@ -73,7 +80,7 @@
                                 <!--////////////////-->
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-link"
-                                data-toggle="modal" data-target="#exampleModal<%= text.usuario %>"
+                                data-toggle="modal" data-target="#exampleModal<%= elUser.username %>"
                                 aria-hidden="true">
                                 <img src="../img/delete.png" alt="Eliminar curso">Eliminar
                                 </button>

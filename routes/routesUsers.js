@@ -15,7 +15,7 @@ router.get('/usuariosMain',async (req,res)=> {
 router.get('/usuarios',isAuthenticated,async (req,res)=> {
   const rta=await usuarios.find();
   const elUsuario=req.user;
-  res.render('usuarios',{rta,elUsuario});
+  res.render('usuarios',{rta,elUsuario,cantidad:rta.length});
 });
 //////////////////////////////
 router.get('/nuevoUsuario',isAuthenticated,(req,res)=> {
@@ -32,7 +32,7 @@ router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
   }else {
   const username= correo.substring(0,correo.indexOf('@'));
 
-  const el_usuario=await usuarios.findOne({correo:correo});
+  const el_usuario=await usuarios.findOne({username:username});
   if(el_usuario){
     req.flash('error_registro',"Usuario ya existe");
     res.redirect('/users/nuevoUsuario');
@@ -65,7 +65,7 @@ router.put('/editarUsuario/:_id',isAuthenticated,async(req,res)=> {
 router.delete('/deleteUsuario/:_id',isAuthenticated,async(req,res)=> {
 const rta=await usuarios.findById(req.params._id);
 await usuarios.findByIdAndDelete(req.params._id);
-req.flash('ok_registro',"Usuario "+rta.usuario+"--"+rta.nombre+" eliminado correctamente");
+req.flash('ok_registro',"Usuario "+rta.nombre+"--"+rta.correo+" eliminado correctamente");
 res.redirect('/users/usuarios');
 
 });
