@@ -38,7 +38,7 @@ router.get('/inicio',isAuthenticated,async (req,res)=> {
   const elUsuario=req.user;
   if(elUsuario){
   const correo =elUsuario._json.email;
-  console.log(elUsuario);
+  //console.log(elUsuario);
   const existe=await usuarios.findOne({correo:correo});
   if(existe){
     res.render('inicio',{elUsuario:elUsuario,estado:"1"});

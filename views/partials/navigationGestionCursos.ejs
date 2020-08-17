@@ -1,6 +1,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <% if (user) { %>
+  <% if (typeof elUsuario != "undefined") { %>
+
 
     <div class="container">
 
@@ -12,7 +13,7 @@
           <img src="/img/eye.png">
           Mis cursos<span class="sr-only">(current)</span></a>
       </li>
-      <% if (user.usuario=='admin') { %>
+    <% if (elUsuario._json.sub=='113498746980831321020') { %>
       <li >
         <a class="nav-link">|</a>
       </li>

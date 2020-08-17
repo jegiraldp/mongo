@@ -40,13 +40,13 @@
             <input type="hidden" name="_method" value="PUT">
       <div class="form-group">
         <input type="text"  class="form-control" name="nombre" value="<%=rta.nombre%>"
-        autofocus placeholder="Nombre del curso" aria-describedby="emailHelp" />
-        <small id="emailHelp" class="form-text text-muted">Nombre completo</small>
+        autofocus placeholder="Nombre del curso" aria-describedby="nombreHelp" />
+        <small id="nombreHelp" class="form-text text-muted">Nombre completo</small>
       </div>
       <div class="form-group">
-        <input type="text"  class="form-control" name="usuario" value="<%=rta.usuario%>"
-        autofocus placeholder="Nombre del curso" aria-describedby="usuarioHelp" />
-        <small id="emailHelp" class="form-text text-muted">usuario</small>
+        <input type="email"  class="form-control" name="correo" value="<%=rta.correo%>"
+        autofocus placeholder="Correo electrónico" aria-describedby="correoHelp" />
+        <small id="correoHelp" class="form-text text-muted">Correo electrónico</small>
       </div>
 
         <input class="btn btn-primary" type="submit" name="boton" value="Actualizar Usuario">

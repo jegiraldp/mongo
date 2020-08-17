@@ -50,13 +50,14 @@ router.post('/nuevoUsuario',isAuthenticated,async (req,res)=> {
 //////////////////////////////
 router.get('/editarUsuario/:_id',isAuthenticated,async(req,res)=> {
   const rta=await usuarios.findById(req.params._id);
-  res.render('editarUsuario', {rta:rta,informacion:'Editando:  '+rta.usuario});
+  const elUsuario=req.user;
+  res.render('editarUsuario', {rta:rta,informacion:'Editando:  '+rta.nombre,elUsuario});
 });
 //////////////////////////////
 router.put('/editarUsuario/:_id',isAuthenticated,async(req,res)=> {
-  const {nombre,usuario}= req.body;
-  await usuarios.findByIdAndUpdate(req.params._id,{nombre, usuario});
-  req.flash('ok_registro',"Usuario "+usuario+" editado correctamente");
+  const {nombre,correo}= req.body;
+  await usuarios.findByIdAndUpdate(req.params._id,{nombre, correo});
+  req.flash('ok_registro',"Usuario "+nombre+" editado correctamente");
   res.redirect('/users/usuarios');
 
 });
