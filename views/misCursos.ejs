@@ -46,7 +46,13 @@
                 ¡<b>No hay cursos registrados</b>!
           </div>
         <% }else {%>
-            <h5 class="card-title">Mis cursos</h5>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <b>Mis cursos</b>  (<%=cantidad%>)
+      </div>
+
         <table id="tablaInicio">
           <tr class="losTH">
             <th>Nombre del curso</th>
@@ -109,7 +115,17 @@
       <% });%>
   </table>
     <%}%>
-  <%}%>
+    <% } else{%>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img src="/img/alerta.png" alt="">
+        <b>¡Usuario no autorizado!</b>
+        <img src="/img/alerta.png" alt="">
+        -- <a href="/main/home"> Ir a inicio</a>
+      </div>
+      <%}%>
 
 </div></div></div>
 <div id="pie"><%- include ('partials/footer.ejs') %></div>

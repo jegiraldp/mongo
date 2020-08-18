@@ -22,7 +22,7 @@ router.get('/cursos',async (req,res)=> {
 router.get('/todosCursos',async (req,res)=> {
   const rta=await cursos.find();
     const elUsuario=req.user;
-  res.render('todosCursos',{rta:rta,elUsuario});
+  res.render('todosCursos',{rta:rta,elUsuario,cantidad:rta.length});
 });
 //////////////////////////////
 router.get('/cursosMain',isAuthenticated,async (req,res)=> {
@@ -36,11 +36,12 @@ router.get('/misCursos',async (req,res)=> {
   const correo= elUsuario._json.email;
   const username= correo.substring(0,correo.indexOf('@'));
   const rta=await cursos.find({user:username});
-  res.render('misCursos',{rta,elUsuario});
+  res.render('misCursos',{rta,elUsuario,cantidad:rta.length});
 });
 
 ///////////////////////////
 router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
+  const elUsuario=req.user;
   const contador=0;
   const rta=await cursos.findById(req.params._id);
   const lasUnidades=await unidades.find({idCurso:rta._id}).sort({orden:1});
@@ -49,7 +50,7 @@ router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
     await unidades.findByIdAndUpdate(lasUnidades[i]._id,{orden});
     lasUnidades[i].orden=(i+1);
   }
-  res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length});
+  res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length,elUsuario});
 });
 //////////////////////////////
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {
