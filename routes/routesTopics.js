@@ -10,24 +10,25 @@ const {isAuthenticated} = require('../helpers/auth');
 
 ////////////////////////////////
 router.get('/nuevoTema/:idUnidad/:estado/:idCurso',isAuthenticated,async (req,res)=> {
+  const elUsuario=req.user;
   const elCurso=await cursos.findById(req.params.idCurso);
   const laUnidad=await unidades.findById(req.params.idUnidad);
   const estado=req.params.estado;
   //console.log('estado '+estado);
 
   if(estado=="2"){
-    res.render('nuevoTema',{elCurso,laUnidad, ok_nuevo_tema:"",error_registro_tema:"Faltan datos del tema"});
+    res.render('nuevoTema',{elUsuario,elCurso,laUnidad, ok_nuevo_tema:"",error_registro_tema:"Faltan datos del tema"});
   }
 
     if(estado=="3"){
-  res.render('nuevoTema',{elCurso,laUnidad, ok_nuevo_tema:"",error_registro_tema:"Título del tema ya existe"});
+  res.render('nuevoTema',{elUsuario,elCurso,laUnidad, ok_nuevo_tema:"",error_registro_tema:"Título del tema ya existe"});
 }
   if(estado=="1"){
-  res.render('nuevoTema',{elCurso,laUnidad,ok_nuevo_tema:"Tema creado con exito",error_registro_tema:""});
+  res.render('nuevoTema',{elUsuario,elCurso,laUnidad,ok_nuevo_tema:"Tema creado con exito",error_registro_tema:""});
 }
 
 if(estado=="5"){
-res.render('nuevoTema',{elCurso,laUnidad,ok_nuevo_tema:"",error_registro_tema:""});
+res.render('nuevoTema',{elUsuario,elCurso,laUnidad,ok_nuevo_tema:"",error_registro_tema:""});
 }
 
 });
@@ -88,7 +89,7 @@ router.get('/todosTemas/:idUnidad/:idCurso',isAuthenticated,async (req,res)=> {
   const rtaUnidad=await unidades.findById(idUnidad);
   const rtaTemas=await temas.find({idUnidad:idUnidad});
   const rtaCursoId=rtaUnidad.idCurso;
-  
+
   res.render('todosTemas',{rtaUnidad,rtaTemas,rtaCursoId});
 });
 //////////////////////////////
@@ -104,6 +105,7 @@ req.flash('ok_registro',"Tema "+rta.nombre+" eliminado correctamente");
 
 ///////////////////////////////////
 router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
+  const elUsuario=req.user;
   const opcion=req.params.opcion;
   const orden=req.params.orden;
   const elTema = await temas.findById(req.params._id);
@@ -128,7 +130,7 @@ router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
 
 
   const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
-  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
+  res.render('unidadInicio',{elUsuario,rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
 
 });
 //////////////////////////////

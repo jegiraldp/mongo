@@ -62,14 +62,16 @@
       <input class="btn btn-primary" type="submit" name="boton" value="Registrar Tema">
     </form>
   </div>
-    <%}else{%>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        Usuario no autorizado
-  </div>
-      <%}%>
+  <%}else{%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <img src="/img/alerta.png" alt="">
+      <b>¡Usuario no autorizado!</b>
+      <img src="/img/alerta.png" alt=""> -- <a href="/main/home"> Ir a inicio</a>
+</div>
+    <%}%>
   </div>
 </div>
  <div id="pie"> <%- include ('partials/footer.ejs') %>

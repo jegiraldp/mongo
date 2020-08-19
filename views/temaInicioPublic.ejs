@@ -11,7 +11,10 @@
 
   </head>
   <body>
-    
+    <%if(!user){%>
+      <div><%- include ('partials/navigation.ejs') %></div>
+
+      <%}%>
     <% if (rtaTema) { %>
 
   <div><%- include ('partials/navigationUsuarios.ejs') %></div>

@@ -10,6 +10,7 @@ const {isAuthenticated} = require('../helpers/auth');
 //////////////////////////////
 //////////////////////////////
 router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
+  const elUsuario=req.user;
   const rtaUnidad=await unidades.findById(req.params._id);
   const rtaCurso=await cursos.findById(req.params.idCurso);
   const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
@@ -19,9 +20,22 @@ router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
     losTemas[i].orden=orden;
   }
 
-  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length});
+  res.render('unidadInicio',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length,elUsuario});
 });
 //////////////////////////////
+router.get('/inicioUnidadPublic/:_id/:idCurso',isAuthenticated,async (req,res)=> {
+  const elUsuario=req.user;
+  const rtaUnidad=await unidades.findById(req.params._id);
+  const rtaCurso=await cursos.findById(req.params.idCurso);
+  const losTemas=await temas.find({idUnidad:rtaUnidad._id}).sort({orden:1});
+  for (var i = 0; i < losTemas.length; i++) {
+    orden=(i+1);
+    await temas.findByIdAndUpdate(losTemas[i]._id,{orden});
+    losTemas[i].orden=orden;
+  }
+
+  res.render('unidadInicioPublic',{rtaUnidad,rtaCurso,losTemas,cantidad:losTemas.length,elUsuario});
+});
 //////////////////////////////
 router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
   const elUsuario=req.user;

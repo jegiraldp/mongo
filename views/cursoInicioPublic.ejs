@@ -23,9 +23,7 @@
         <h5 class="card-title"><b><%=rta.nombre %></b> &gt; <b>
           <span id="unidadNombre">TABLA DE CONTENIDO</span></b></h5>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+      
           <span id="descripcion"><b>Descripción del curso:</b> <%=rta.descripcion%></span><br/>
       </div>
           <br/>
@@ -36,7 +34,7 @@
           <% lasUnidades.forEach(function(u){%>
               <tr class="contenido">
 
-                <td><a href="/units/inicioUnidad/<%= u._id %>/<%= u.idCurso %>">
+                <td><a href="/units/inicioUnidadPublic/<%= u._id %>/<%= u.idCurso %>">
                   <b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
 
                     <% if (u.descripcion.length>90) {%>
