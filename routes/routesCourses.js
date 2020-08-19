@@ -50,7 +50,20 @@ router.get('/inicioCurso/:_id',isAuthenticated,async (req,res)=> {
     await unidades.findByIdAndUpdate(lasUnidades[i]._id,{orden});
     lasUnidades[i].orden=(i+1);
   }
+  //console.log(rta);
   res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length,elUsuario});
+});
+///////////////////////////
+router.get('/cursoInicioPublic/:_id',isAuthenticated,async (req,res)=> {
+  const contador=0;
+  const rta=await cursos.findById(req.params._id);
+  const lasUnidades=await unidades.find({idCurso:rta._id}).sort({orden:1});
+  for (var i = 0; i < lasUnidades.length; i++) {
+    orden=(i+1);
+    await unidades.findByIdAndUpdate(lasUnidades[i]._id,{orden});
+    lasUnidades[i].orden=(i+1);
+  }
+    res.render('cursoInicioPublic',{rta,lasUnidades,cantidad:lasUnidades.length});
 });
 //////////////////////////////
 router.get('/nuevoCurso',isAuthenticated,(req,res)=> {

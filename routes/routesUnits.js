@@ -24,6 +24,7 @@ router.get('/inicioUnidad/:_id/:idCurso',isAuthenticated,async (req,res)=> {
 //////////////////////////////
 //////////////////////////////
 router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
+  const elUsuario=req.user;
   const opcion=req.params.opcion;
   const orden=req.params.orden;
   const laUnidad = await unidades.findById(req.params._id);
@@ -47,21 +48,22 @@ router.get('/cambiarOrden/:_id/:orden/:opcion',async (req,res)=> {
   const contador=0;
   const rta=await cursos.findById(elCursoId);
   const lasUnidades=await unidades.find({idCurso:elCursoId}).sort({orden:1});
-  res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length});
+  res.render('cursoInicio',{rta,lasUnidades,cantidad:lasUnidades.length,elUsuario});
 
 });
 //////////////////////////////
 ////////////////////////////////
 router.get('/nuevaUnidad/:_id/:estado',isAuthenticated,async (req,res)=> {
   const elCurso=await cursos.findById(req.params._id);
+    const elUsuario=req.user;
   const estado=req.params.estado;
   if(estado=="2"){
-    res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Faltan datos de la unidad"});
+    res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Faltan datos de la unidad",elUsuario});
   }else{
     if(estado=="3"){
-  res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Título de unidad ya existe"});
+  res.render('nuevaUnidad',{elCurso, error_registro_unidad:"Título de unidad ya existe",elUsuario});
     }else{
-  res.render('nuevaUnidad',{elCurso, error_registro_unidad:""});
+  res.render('nuevaUnidad',{elCurso, error_registro_unidad:"",elUsuario});
   }
 }
 });
@@ -89,8 +91,9 @@ res.redirect('/units/nuevaUnidad/'+_id+'/2');
 
 //////////////////////////////
 router.get('/editarUnidad/:_id',isAuthenticated,async(req,res)=> {
+  const elUsuario=req.user;
   const rta=await unidades.findById(req.params._id);
-  res.render('editarUnidad', {rta:rta,informacion:rta.nombre});
+  res.render('editarUnidad', {rta:rta,informacion:rta.nombre,elUsuario});
 });
 //////////////////////////////
 router.put('/editarUnidad/:_id',isAuthenticated,async(req,res)=> {
