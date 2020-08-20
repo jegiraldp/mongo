@@ -7,7 +7,7 @@
       <link rel="stylesheet" type="text/css" href="/css/index.css" />
       <link rel="stylesheet" type="text/css" href="/css/menu.css" />
       <link rel="stylesheet" type="text/css" href="/css/cursoInicio.css" />
-      <link rel="stylesheet" type="text/css" href="/css/tablaCursoInicio.css" />
+      <link rel="stylesheet" type="text/css" href="/css/tablaCursoInicioPublic.css" />
 
   </head>
   <body>
@@ -24,22 +24,28 @@
         <a href="/courses/cursoInicioPublic/<%= rtaCurso._id %>"><img src="/img/back.png">Regresar</a>
         <hr style="width:20%;text-align:left;margin-left:0">
 
-        <h6 class="card-title"><b><%=rtaCurso.nombre %></b> &gt;
-          <b><span id="unidadNombre"><%=rtaUnidad.nombre%></span></b></h6>
-        <span id="descripcion"><b>Descripción de la unidad:</b> <%=rtaUnidad.descripcion%></span>
+        <h5 class="card-title"><b><%=rtaCurso.nombre %></b> &gt;
+          <b><span id="unidadNombre"><%=rtaUnidad.nombre%></span></b></h5>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
 
-          <br/><br/>
+            <span id="descripcion"><b>Descripción de la unidad:</b> <%=rtaUnidad.descripcion%></span>
+
+        </div>
+
+          <br/>
         <table id="tablaInicio">
             <tr class="losTH">
-              <th>Temas de la unidad
-                &nbsp;&nbsp;<img src="/img/eye.png" alt="Editar"><a href="/topics/todosTemas/<%=rtaUnidad._id  %>/<%=rtaCurso._id %>">Ver todos</a>
+
+              <th>
+                <img src="/img/eye.png" alt="Editar">
+                <a href="/topics/todosTemas/<%=rtaUnidad._id  %>/<%=rtaCurso._id %>">Ver todos</a>
               </th>
 
             </tr>
             <% losTemas.forEach(function(t){%>
             <tr class="contenido">
                 <td>
-                <a href="/topics/inicioTema/<%= t._id %>/<%= t.idUnidad %>"><b>Tema <%= t.orden %>.</b><%= t.nombre %></a>
+                <a href="/topics/inicioTemaPublic/<%= t._id %>/<%= t.idUnidad %>"><b>Tema <%= t.orden %>.</b><%= t.nombre %></a>
                 </td>
 
             </tr>

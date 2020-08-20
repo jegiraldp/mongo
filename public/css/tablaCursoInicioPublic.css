@@ -1,0 +1,29 @@
+table#tablaInicio{
+  width: 100%;
+  border-collapse: collapse;
+  //border: 1px solid #AAAAAA;
+
+}
+
+table#tablaInicio tr.losTH{
+	text-align:left;
+	color:darkorange;
+}
+
+tr.contenido td, tr th{
+  border-bottom:1pt solid #ccc;
+}
+
+tr.contenido td{
+  font-size: 16px;
+  padding-bottom: 15px;
+}
+
+td#nombre:hover, tr.contenido:hover{
+  background-color: #fdf9eb;
+  //font-style: italic;
+}
+
+button.btn {
+  font-size: 15px;
+}
