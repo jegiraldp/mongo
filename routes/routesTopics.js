@@ -58,9 +58,10 @@ router.post('/nuevoTema',isAuthenticated,async (req,res)=> {
 
 //////////////////////////////
 router.get('/editarTema/:_id',isAuthenticated,async(req,res)=> {
+  const elUsuario=req.user;
   const rta=await temas.findById(req.params._id);
   const rtaUnidad=await unidades.findById(rta.idUnidad);
-  res.render('editarTema', {rta,informacion:rta.nombre,rtaUnidad});
+  res.render('editarTema', {rta,elUsuario,informacion:rta.nombre,rtaUnidad});
 });
 
 //////////////////////////////
