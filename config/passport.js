@@ -30,7 +30,7 @@ passport.use(new localStrategy({
 passport.use(new GoogleStrategy({
     clientID: '360080404512-1sipfr6kemrm7tbpp6u01jb3qgqa4nlg.apps.googleusercontent.com',
     clientSecret: 'PHScm2vvjGPPVKdvZgWMFgMb',
-    callbackURL: "http://localhost:8080/main/google/callback"
+    callbackURL: "https://notasclase2020.herokuapp.com/main/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
        return done(null, profile);
