@@ -15,6 +15,7 @@ router.get('/menuCursos',(req,res)=> {
 //////////////////////////////
 router.get('/cursos',async (req,res)=> {
   const rta=await cursos.find().sort({nombre:1});
+
   res.render('cursos',{rta:rta});
 });
 
@@ -108,8 +109,9 @@ if(nombre.length==0 || descripcion.length==0){
 
 //////////////////////////////
 router.get('/editarCurso/:_id',isAuthenticated,async(req,res)=> {
+  const elUsuario=req.user;
   const rta=await cursos.findById(req.params._id);
-  res.render('editarCurso', {rta:rta,informacion:rta.nombre});
+  res.render('editarCurso', {rta:rta,elUsuario,informacion:rta.nombre});
 });
 //////////////////////////////
 router.put('/editarCurso/:_id',isAuthenticated,async(req,res)=> {

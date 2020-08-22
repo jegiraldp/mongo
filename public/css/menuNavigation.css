@@ -1,0 +1,19 @@
+
+div#navbarNav{
+  font-family: "Courier New", Courier, monospace;
+  background-color:#24aa6c;
+  -moz-border-radius:1em;
+   -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+
+div#navbarNav ul.navbar-nav li.nav-item a.nav-link{
+  color:white;
+}
+
+div#navbarNav ul.navbar-nav li.nav-item a.nav-link:hover{
+  -moz-border-radius:1em;
+   -webkit-border-radius: 5px 5px 5px 5px;
+   background: #228054;
+
+}
