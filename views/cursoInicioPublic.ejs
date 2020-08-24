@@ -30,7 +30,7 @@
           <br/>
           <table id="tablaInicio">
             <tr class="losTH">
-            <th></th><th></th>
+            <th></th>
             </tr>
           <% lasUnidades.forEach(function(u){%>
               <tr class="contenido">
@@ -38,11 +38,7 @@
                 <td><a href="/units/inicioUnidadPublic/<%= u._id %>/<%= u.idCurso %>">
                   <b>Unidad <%=u.orden%>.</b><%=u.nombre%></a></td>
 
-                    <% if (u.descripcion.length>90) {%>
-                <td>  <%=u.descripcion.substring(0,90)%>...</td>
-                  <%}else{%>
-                    <td>  <%=u.descripcion%><td>
-                    <%}%>
+                  
               </tr>
           <%});%>
         </table>
