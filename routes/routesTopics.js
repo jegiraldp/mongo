@@ -38,7 +38,7 @@ res.render('nuevoTema',{elUsuario,elCurso,laUnidad,ok_nuevo_tema:"",error_regist
 router.post('/nuevoTema',isAuthenticated,async (req,res)=> {
   const {idUnidad,nombre,descripcion}=req.body;
   const theUnidad=await unidades.findById(idUnidad);
-  if(nombre.length==0){
+  if(nombre.length==0 || descripcion.length==0){
   res.redirect('/topics/nuevoTema/'+idUnidad+'/2/'+theUnidad.idCurso);
 }else{
     const existeNombre=await temas.findOne({nombre:nombre,idUnidad:idUnidad});
